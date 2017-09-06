@@ -1,0 +1,25 @@
+[30-Aug-2017 21:50:23 UTC] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in /home/staffpor/hr/app/Http/Controllers/AdminController.php on line 673
+[30-Aug-2017 22:36:14 UTC] PHP Fatal error:  Class 'App\InsertModel' not found in /home/staffpor/hr/app/Http/Controllers/AdminController.php on line 428
+[30-Aug-2017 22:38:51 UTC] PHP Fatal error:  Method Illuminate\View\View::__toString() must not throw an exception in /home/staffpor/hr/app/Helpers/HelperController.php on line 0
+[30-Aug-2017 22:41:11 UTC] PHP Fatal error:  Method Illuminate\View\View::__toString() must not throw an exception in /home/staffpor/hr/app/Helpers/HelperController.php on line 0
+[30-Aug-2017 22:44:41 UTC] PHP Fatal error:  Method Illuminate\View\View::__toString() must not throw an exception in /home/staffpor/hr/app/Helpers/HelperController.php on line 0
+[30-Aug-2017 22:45:49 UTC] PHP Fatal error:  Method Illuminate\View\View::__toString() must not throw an exception in /home/staffpor/hr/app/Helpers/HelperController.php on line 0
+[30-Aug-2017 22:47:54 UTC] PHP Fatal error:  Method Illuminate\View\View::__toString() must not throw an exception in /home/staffpor/hr/app/Helpers/HelperController.php on line 0
+[30-Aug-2017 22:50:05 UTC] PHP Fatal error:  Method Illuminate\View\View::__toString() must not throw an exception in /home/staffpor/hr/app/Helpers/HelperController.php on line 0
+[30-Aug-2017 22:51:55 UTC] PHP Fatal error:  Method Illuminate\View\View::__toString() must not throw an exception in /home/staffpor/hr/app/Helpers/HelperController.php on line 0
+[30-Aug-2017 22:52:55 UTC] PHP Fatal error:  Method Illuminate\View\View::__toString() must not throw an exception in /home/staffpor/hr/app/Helpers/HelperController.php on line 0
+[30-Aug-2017 16:02:17 America/Phoenix] PHP Warning:  Module 'intl' already loaded in Unknown on line 0
+[30-Aug-2017 23:02:17 UTC] PHP Fatal error:  Call to undefined method Illuminate\Database\Schema\Blueprint::year() in /home/staffpor/hr/database/migrations/2017_05_05_210809_create_educational_background.php on line 20
+[31-Aug-2017 15:32:25 UTC] PHP Fatal error:  Call to a member function getClientOriginalName() on null in /home/staffpor/hr/app/Http/Controllers/UserController.php on line 187
+[31-Aug-2017 16:44:17 UTC] PHP Fatal error:  Method Illuminate\View\View::__toString() must not throw an exception in /home/staffpor/hr/app/Helpers/HelperController.php on line 0
+<<<<<<< HEAD
+[05-Sep-2017 10:08:13 America/Phoenix] PHP Warning:  Module 'intl' already loaded in Unknown on line 0
+[05-Sep-2017 10:08:17 America/Phoenix] PHP Warning:  Module 'intl' already loaded in Unknown on line 0
+[05-Sep-2017 10:08:50 America/Phoenix] PHP Warning:  Module 'intl' already loaded in Unknown on line 0
+[05-Sep-2017 10:09:14 America/Phoenix] PHP Warning:  Module 'intl' already loaded in Unknown on line 0
+[05-Sep-2017 10:09:17 America/Phoenix] PHP Warning:  Module 'intl' already loaded in Unknown on line 0
+[05-Sep-2017 10:16:06 America/Phoenix] PHP Warning:  Module 'intl' already loaded in Unknown on line 0
+[05-Sep-2017 10:16:33 America/Phoenix] PHP Warning:  Module 'intl' already loaded in Unknown on line 0
+=======
+>>>>>>> b42320356f7f99679c074c7317143e6e872a9658
+[06-Sep-2017 20:01:51 UTC] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/staffpor/public_html/app/app/Http/Controllers/AdminController.php on line 119
