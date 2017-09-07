@@ -4,11 +4,7 @@
 			<!-- START CONTAINER -->
 			@include('includes/flash-message')
 			<div class="container-widget">
-<<<<<<< HEAD
 				<a href="<?php echo url('user/leaves'); ?>" class="btn btn-info"><i class="fa fa-arrow-left"></i> Back to list</a>
-=======
-				<a href="/user/leaves" class="btn btn-info"><i class="fa fa-arrow-left"></i> Back to list</a>
->>>>>>> b42320356f7f99679c074c7317143e6e872a9658
 					<p></p>
 					<div class="panel panel-default">
 						<div class="panel-title">

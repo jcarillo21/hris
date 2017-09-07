@@ -16,6 +16,7 @@
 							<form class="validate-admin" action="<?php echo url('admin/process/edit-leave'); ?>" method="POST">
 								{{ method_field('PUT') }}
 								{{ csrf_field() }}
+								<input type="hidden" name="user_id" value="<?php echo $leave->personal_info_id; ?>" />
 								<input type="hidden" name="leave_id" value="<?php echo $leave->leave_id; ?>" />
 								<input type="hidden" name="reviewed_by" value="<?php echo $pid; ?>" />
 								<table class="table table-striped">

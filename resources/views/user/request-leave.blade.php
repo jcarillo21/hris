@@ -11,11 +11,7 @@
 					  </ul>
 					</div>
 					<div class="panel-body">
-<<<<<<< HEAD
 						<form id="request-leave" class="validate-user form-horizontal" action="<?php echo url('user/process/request-leave'); ?>" method="post" enctype="multipart/form-data">
-=======
-						<form id="request-leave" class="validate-user form-horizontal" action="/user/process/request-leave" method="post" enctype="multipart/form-data">
->>>>>>> b42320356f7f99679c074c7317143e6e872a9658
 								{{ method_field('PUT') }}
 								{{ csrf_field() }} 					
 								<div class="form-group">
