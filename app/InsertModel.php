@@ -176,4 +176,12 @@ class InsertModel extends Model{
 		$query = DB::table('overtime')->insert($insert);	
 		return (($query) ? true : false);			
 	}
+	protected function UploadBiometrics($biometrics){
+		$query = DB::table('attendance')->insert($biometrics);	
+		return (($query) ? true : false);		
+	}
+	protected function BulkUploadPayslip($payslip){
+		$query = DB::table('payslip')->insert($payslip);	
+		return (($query) ? true : false);		
+	}
 }

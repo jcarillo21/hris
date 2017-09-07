@@ -195,10 +195,39 @@ class AdminController extends Controller{
 			return redirect()->back();
 		}
 		$file->uploadCSV($r);
-		$db = DB::connection()->getPdo();
-		$query = sprintf("LOAD DATA local INFILE '%s' INTO TABLE payslip FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' ESCAPED BY '\"' LINES TERMINATED BY '\\n' IGNORE 1 LINES (`personal_info_id`,`from`,`to`,`tax_status`,`basic_pay`,`night_diff`,`ot_pay`,`holiday_pay`,`dm`,`cola`,`bonus`,`wtax`,`sss`,`philhealth`,`pagibig`)", addslashes(getcwd().'/files/csv/'.$file_name.'.'.$ext.''));
-		$res = DB::connection()->getpdo()->exec($query);
-		if($res){
+		
+		$csv = addslashes(getcwd().'/files/csv/'.$file_name.'.'.$ext.'');
+		$payslip = fopen($csv, "r");
+		
+		while (($column = fgetcsv($payslip)) !== false) {
+			if (array(null) !== $column) {
+				$rowData[] = fgetcsv($payslip);
+			}
+        }		
+
+        foreach ($rowData as $key => $value){
+            $inserted_data = array(
+				'personal_info_id' => $value[0],
+				'from' => $value[1],
+				'to' => $value[2],
+				'tax_status' => $value[3],
+				'basic_pay' => $value[4],
+				'night_diff' => $value[5],
+				'ot_pay' => $value[6],
+				'holiday_pay' => $value[7],
+				'dm' => $value[8],
+				'cola' => $value[9],
+				'bonus' => $value[10],
+				'wtax' => $value[11],
+				'sss' => $value[12],
+				'philhealth' => $value[13],
+				'pagibig' => $value[14]
+			);  
+			$data['result'] = InsertModel::BulkUploadPayslip($inserted_data);
+        }		
+		fclose($payslip);
+		
+		if($data['result']){
 			Session::flash('success', 'Payslip Added Successfully!');
 			$file->deleteFileViaDir(getcwd().'/files/csv/'.$file_name.'.'.$ext.'');
 			
@@ -553,10 +582,29 @@ class AdminController extends Controller{
 			return redirect()->back();
 		}
 		$file->uploadCSV($r);
-		$db = DB::connection()->getPdo();
-		$query = sprintf("LOAD DATA local INFILE '%s' INTO TABLE attendance FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' ESCAPED BY '\"' LINES TERMINATED BY '\\n' IGNORE 1 LINES (`personal_info_id`,`date`,`timetable`,`clock_in`,`clock_out`)", addslashes(getcwd().'/files/csv/'.$file_name.'.'.$ext.''));
-		$res = DB::connection()->getpdo()->exec($query);
-		if($res){
+		
+		$csv = addslashes(getcwd().'/files/csv/'.$file_name.'.'.$ext.'');
+		$biometrics = fopen($csv, "r");
+		
+		while (($column = fgetcsv($biometrics)) !== false) {
+			if (array(null) !== $column) {
+				$rowData[] = fgetcsv($biometrics);
+			}
+        }	
+		
+        foreach ($rowData as $key => $value){
+            $inserted_data = array(
+				'personal_info_id'=>$value[0],
+				'date'=>$value[1],
+				'timetable'=>$value[2],
+				'clock_in'=>$value[3],
+				'clock_out'=>$value[4]
+			);
+			$data['result'] = InsertModel::UploadBiometrics($inserted_data);
+        }		
+		fclose($biometrics);
+		
+		if($data['result']){
 			Session::flash('success', 'Attendance Added Successfully!');
 			$file->deleteFileViaDir(getcwd().'/files/csv/'.$file_name.'.'.$ext.'');
 		}
@@ -678,21 +726,13 @@ class AdminController extends Controller{
 			$response = 'Email address is already taken.';
 		}else{
 			$response = true;
-		}
+		} 
 		echo json_encode($response);
 	}		
 	//End AjAX Controller modules
 
 	//Debug
 	public function debug(){	 
-	
-		$to = 'jcruz@optimizex.com';
-		$company = DisplayModel::getSettingsViaMeta('company_name');
-		$data = $this->pub;
-		
-		$data['company'] = $company->value;
-		
-		$helper = $data['helper'];
-		$resp = $helper->sendEmail($to,view('mail.add-employee',$data));
+
 	}	
 }
