@@ -117,7 +117,13 @@ class GuestController extends Controller{
 			$data['position'] = $pos->job_title;
 			$data['company'] = $company->value;
 			
-			$helper->sendEmail($email,view('mail.add-applicant',$data));
+			//Loop admin email
+			$admin_emails = DisplayModel::getAllAdminEmails();
+			
+			foreach($admin_emails as $admin_email){
+				$helper->sendEmail($admin_email->email_address,view('mail.add-applicant',$data));				
+			}
+
 			
 			Session::flash('success', 'Applicant added successfully!');
 		}else{

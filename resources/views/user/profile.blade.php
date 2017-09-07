@@ -15,11 +15,7 @@
 							<!-- Start Top -->
 							<div class="social-top">
 							  <div class="profile-left">
-<<<<<<< HEAD
 								<img src="<?php echo url('/img/'.$profile->display_pic.''); ?>" alt="img" class="profile-img">
-=======
-								<img src="/img/<?php echo $profile->display_pic; ?>" alt="img" class="profile-img">
->>>>>>> b42320356f7f99679c074c7317143e6e872a9658
 								<h1 class="name"><?php echo $profile->fname.' '.$profile->lname; ?></h1>
 								<p class="profile-text">My profile</p>
 							  </div>
@@ -35,11 +31,7 @@
 								<!-- Start Post -->
 								  <div class="panel panel-default">
 									<h3>Personal Information</h3>
-<<<<<<< HEAD
 									<form id="edit-profile" class="validate-user-edit form-horizontal" action="<?php echo url('user/process/edit-profile'); ?>" method="post" >
-=======
-									<form id="edit-profile" class="validate-user-edit form-horizontal" action="/user/process/edit-profile" method="post" >
->>>>>>> b42320356f7f99679c074c7317143e6e872a9658
 										{{ method_field('PUT') }}
 										{{ csrf_field() }} 		
 										<input name="personal_info_id" value="<?php echo $profile->personal_info_id; ?>" type="hidden" />										
@@ -149,11 +141,7 @@
 								<!-- Start Post -->
 								  <div class="panel panel-default">
 									<h3>Login Information</h3>
-<<<<<<< HEAD
 									<form id="edit-login" class="validate-user-edit form-horizontal" action="<?php echo url('admin/process/edit-login'); ?>" method="post" >
-=======
-									<form id="edit-login" class="validate-user-edit form-horizontal" action="/admin/process/edit-login" method="post" >
->>>>>>> b42320356f7f99679c074c7317143e6e872a9658
 										{{ method_field('PUT') }}
 										{{ csrf_field() }} 								
 										<input name="personal_info_id" value="<?php echo $profile->personal_info_id; ?>" type="hidden" />
@@ -186,11 +174,106 @@
 								  </div>
 								<!-- End Post -->
 
-							  </div>
-							  <!-- End Left -->
+							</div>
+								<!-- End Left -->
+
 							</div>
 							<!-- End Social Content -->
 						</div>		
+						<div class="social-content">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="panel panel-default">
+										<h3>Educational Background</h3><br/>
+										<table class="table-striped table">
+											<thead>
+												<tr>
+													<th>School</th>
+													<th>From</th>
+													<th>To</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+													foreach($education as $edu){ 
+														echo '
+															<tr>
+																<td>'.$edu->school_name.'</td>
+																<td>'.$edu->from.'</td>
+																<td>'.$edu->to.'</td>
+															</tr>
+														';
+													}
+												?>
+											</tbody>
+										</table>										
+									</div>		
+								</div>
+									  
+								<div class="col-md-12">
+									<div class="panel panel-default">
+										<h3>Employment Background</h3><br/>  
+										<table class="table-striped table">
+											<thead>
+												<tr>
+													<th>Company name</th>
+													<th>Position</th>
+													<th>Start</th>
+													<th>End</th>
+													<th>Reason of leaving</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+													foreach($employment as $emp){
+														echo '
+															<tr>
+																<td>'.$emp->company_name.'</td>
+																<td>'.$emp->position.'</td>
+																<td>'.$emp->from.'</td>
+																<td>'.$emp->to.'</td>
+																<td>'.$emp->reason_of_leaving.'</td>
+															</tr>
+														';
+													}
+												?>
+											</tbody>
+										</table>										
+									</div>	
+								</div>
+									  
+								<div class="col-md-12">
+									<div class="panel panel-default">
+										<h3>References </h3><br/>
+										<table class="table-striped table">
+											<thead>
+												<tr>
+													<th>Reference Name</th>
+													<th>Reference Position</th>
+													<th>Company / Organization / Affiliation</th>
+													<th>Contanct</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+													foreach($reference as $ref){
+														echo '
+															<tr>
+																<td>'.$ref->name_of_reference.'</td>
+																<td>'.$ref->position.'</td>
+																<td>'.$ref->company_name.'</td>
+																<td>'.$ref->contact_number.'</td>
+															</tr>
+														';
+													}
+												?>
+											</tbody>
+										</table>										
+									</div>	
+								</div>
+								
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

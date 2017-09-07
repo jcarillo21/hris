@@ -123,6 +123,9 @@ class UserController extends Controller{
 		$data['departments'] = DisplayModel::getDepartmentViaID($data['profile']->department_id);
 		$data['count'] = count(DisplayModel::getAllUserFiles(Session::get('pid')));
 		$data['jobs'] = DisplayModel::getJobViaID($data['profile']->job_id);
+		$data['education'] = DisplayModel::getEducationalBackgroundViaID(Session::get('pid'));
+		$data['employment'] = DisplayModel::getEmploymentBackgroundViaID(Session::get('pid'));
+		$data['reference'] = DisplayModel::getReferenceViaID(Session::get('pid'));
 		$data['page'] = 'Profile';
 		$data['desc'] = 'Edit your profile';
 		return view('user.profile',$data);
