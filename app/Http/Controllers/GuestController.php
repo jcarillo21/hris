@@ -9,6 +9,7 @@ use App\Http\Requests;
 
 use Redirect;
 use Session;
+use Helper;
 
 /**
  * Database Model
@@ -19,7 +20,29 @@ use App\DisplayModel;
 use App\DeleteModel;
 
 class GuestController extends Controller{
+	
+	protected $pub;
+	
+	public function __construct(){
+		$this->middleware(function ($request, $next){
 
+			//Public variables
+			$title   = DisplayModel::getSettingsViaMeta('site_name');
+			$logo    = DisplayModel::getSettingsViaMeta('site_logo');
+			$favicon = DisplayModel::getSettingsViaMeta('favicon');
+				 
+			$this->pub = array(
+				'helper' =>  new Helper(),
+				'title' => $title->value,
+				'page' => '', //overwrite per page
+				'openable' => '', //overwrite per page
+				'desc' => '', //overwrite per page
+				'logo'   => $logo->value
+			);
+			return $next($request);
+		});	
+	}
+	
 	public function applicationForm($key){
 		
 		$existing = displayModel::getFormKeyViaKey($key);
@@ -73,11 +96,29 @@ class GuestController extends Controller{
 		//tests
 		$data['test'] = insertModel::insertTests($pid->personal_info_id,$typing_test,$grammar_test,$listening_test,$personality_test,$iq_test,$eq_test);
 		
-		//upload files
-		$file->uploadResume($request->file('resume'));
-		$file->uploadPracticalExam($request->file('practical_files'));
+		//upload files]
+		if($request->file('resume')!=null){
+			$file->uploadResume($request->file('resume'));
+		}
+		if($request->file('practical_files')!=null){
+			$file->uploadPracticalExam($request->file('practical_files'));
+		}
 		
-		if($data['test']){
+		if($data['test']){	
+			//Send Email
+			$data = $this->pub;
+			$helper = $data['helper'];
+			$company = DisplayModel::getSettingsViaMeta('company_name');
+			$pos = DisplayModel::getJobViaID($position);
+			
+			$data['name'] = $fname.' '.$mname.' '.$lname;
+			$data['email'] = $email;
+			$data['contact'] = $contact;
+			$data['position'] = $pos->job_title;
+			$data['company'] = $company->value;
+			
+			$helper->sendEmail($email,view('mail.add-applicant',$data));
+			
 			Session::flash('success', 'Applicant added successfully!');
 		}else{
 			Session::flash('danger', 'Can not add Applicant!');

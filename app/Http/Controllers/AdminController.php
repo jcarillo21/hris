@@ -677,6 +677,7 @@ class AdminController extends Controller{
 
 	//Debug
 	public function debug(){	 
+	
 		$to = 'jcruz@optimizex.com';
 		$company = DisplayModel::getSettingsViaMeta('company_name');
 		$data = $this->pub;
