@@ -360,8 +360,25 @@ class AdminController extends Controller{
 
 		if($data['edit_leave']){
 			//Email user Here
-			//$email->send('jcruz@primeview.com','john@primeview.com','SUBJ','MSG');
-			Session::flash('success', 'Leave updated successfully!');
+			$company = DisplayModel::getSettingsViaMeta('company_name');
+			$data = $this->pub;
+			$helper = $data['helper'];
+			
+			$user = DisplayModel::getUserViaID($user_id);
+			$data['from'] = $from;
+			$data['to'] = $to;
+			$data['name'] = $user->fname.' '.$user->mname.' '.$user->lname;
+			$data['leave_type'] = $leave_type;
+			$data['status'] = '';
+			if( $status == 1 ){
+				$data['status'] = 'Approved.';
+			}else{
+				$data['status'] = 'Disapproved.';
+			}
+			$data['company'] = $company->value;
+			
+			$helper->sendEmail($user->email_address,view('mail.notify-user-leave',$data));
+			Session::flash('success', 'Leave updated successfully!'); 
 		}
 		return redirect()->back();		
 	}
