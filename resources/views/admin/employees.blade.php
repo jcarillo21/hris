@@ -59,7 +59,7 @@
 												echo (($employee->status == 1) ? '<span class="label label-success">Enabled</span>' : '<span class="label label-danger">Disabled</span>');
 												echo'</td>
 												<td align="right">
-													<a href="'.url("admin/edit/employee/").''.$employee->personal_info_id.'" class="modal-settings btn btn-xs btn-primary" href="#"><i class="fa fa-pencil"></i> Edit</a>
+													<a href="'.url("admin/edit/employee").'/'.$employee->personal_info_id.'" class="modal-settings btn btn-xs btn-primary" href="#"><i class="fa fa-pencil"></i> Edit</a>
 												</td>	
 											</tr>
 											';

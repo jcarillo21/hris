@@ -51,14 +51,14 @@
 												if($type == 'exe'){ $ext = 'exe'; }
 												echo '
 												  <tr>
-													<td><a target="_blank" href="'.url("files/user/").''.$file->uploaded_by.'/'.$file->file_name.'.'.$file->extension.'"><i class="fa '.$ico.'"></i>'.$file->file_name.'</a></td>
+													<td><a target="_blank" href="'.url("files/user").'/'.$file->uploaded_by.'/'.$file->file_name.'.'.$file->extension.'"><i class="fa '.$ico.'"></i>'.$file->file_name.'</a></td>
 													<td>'.$ext.'</td>
 													<td>'.round($file->file_size / 1024).' KB</td>
 													<td>'.$file->fname.' '.$file->lname.'</td>
 													<td class="text-r">'.date('m/d/y',strtotime($file->created_at)).'</td>
 													<td class="text-r">	
-														<a data-url="'.url("process/delete-file/").''.$file->file_id.'" href="#" class="confirm-delete btn btn-xs btn-danger"><i style="color:#fff; font-size:12px;" class="fa fa-trash-o"></i> Delete</a>
-														<a title="Copied!" data-clipboard-text="//'.url("files/user/").''.$file->uploaded_by.'/'.$file->file_name.'.'.$file->extension.'" href="#" class="clip btn btn-xs btn-primary"><i style="color:#fff; font-size:12px;" class="fa fa-copy"></i> Copy Link</a>
+														<a data-url="'.url("process/delete-file").'/'.$file->file_id.'" href="#" class="confirm-delete btn btn-xs btn-danger"><i style="color:#fff; font-size:12px;" class="fa fa-trash-o"></i> Delete</a>
+														<a title="Copied!" data-clipboard-text="'.url("files/user").'/'.$file->uploaded_by.'/'.$file->file_name.'.'.$file->extension.'" href="#" class="clip btn btn-xs btn-primary"><i style="color:#fff; font-size:12px;" class="fa fa-copy"></i> Copy Link</a>
 													</td>
 												  </tr>											
 												';

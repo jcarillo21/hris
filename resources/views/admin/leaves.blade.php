@@ -42,7 +42,7 @@
 													<td>'.date('M d, Y',strtotime($leave->to)).'</td>
 													<td>'.$leave->leave_type.'</td>
 													<td>'.$status.'</td>
-													<td class="text-right"><a href="'.url("admin/edit-leave/").''.$leave->leave_id.'" class="btn btn-xs btn-danger"><i class="fa fa-eye"></i> View</a></td>
+													<td class="text-right"><a href="'.url("admin/edit-leave").'/'.$leave->leave_id.'" class="btn btn-xs btn-danger"><i class="fa fa-eye"></i> View</a></td>
 												</tr>
 											';
 											$ctr++;

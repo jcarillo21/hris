@@ -164,10 +164,138 @@
 
 								</div>
 								<hr/>
+								
 								<div class="form-group">
-								  
+									<div class="col-sm-12">
+										<h3>Educational Background</h3>
+										<table class="table-striped table">
+											<thead>
+												<tr>
+													<th>School</th>
+													<th>From</th>
+													<th>To</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+													foreach($education as $edu){ 
+														echo '
+															<tr>
+																<td>'.$edu->school_name.'</td>
+																<td>'.$edu->from.'</td>
+																<td>'.$edu->to.'</td>
+															</tr>
+														';
+													}
+												?>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-sm-12">
+										<h3>Employment Background </h3>
+										<table class="table-striped table">
+											<thead>
+												<tr>
+													<th>Company name</th>
+													<th>Position</th>
+													<th>Start</th>
+													<th>End</th>
+													<th>Reason of leaving</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+													foreach($employment as $emp){
+														echo '
+															<tr>
+																<td>'.$emp->company_name.'</td>
+																<td>'.$emp->position.'</td>
+																<td>'.$emp->from.'</td>
+																<td>'.$emp->to.'</td>
+																<td>'.$emp->reason_of_leaving.'</td>
+															</tr>
+														';
+													}
+												?>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-sm-12">
+										<h3>References </h3>
+										<table class="table-striped table">
+											<thead>
+												<tr>
+													<th>Reference Name</th>
+													<th>Reference Position</th>
+													<th>Company / Organization / Affiliation</th>
+													<th>Contanct</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+													foreach($reference as $ref){
+														echo '
+															<tr>
+																<td>'.$ref->name_of_reference.'</td>
+																<td>'.$ref->position.'</td>
+																<td>'.$ref->company_name.'</td>
+																<td>'.$ref->contact_number.'</td>
+															</tr>
+														';
+													}
+												?>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-sm-12">
+										<h3>User Files </h3>
+										<table class="dataTable table table-dic table-hover ">
+										<thead>
+											<tr>
+												<th>File name</th>
+												<th>File Type</th>
+												<th>File Size</th>
+												<th class="text-r">Date Uploaded</th>
+												<th class="text-r">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+												<?php
+													foreach($files as $file){
+														$ext = 'File';
+														$ico = 'fa-file-o';
+														$type = $file->extension;
+														if($type == 'png'){ $ext = 'Image'; $ico = 'fa-file-image-o'; }
+														if($type == 'jpg'){ $ext = 'Image'; $ico = 'fa-file-image-o'; }
+														if($type == 'gif'){ $ext = 'Image'; $ico = 'fa-file-image-o'; }
+														if($type == 'pdf'){ $ext = 'PDF';   $ico = 'fa-file-pdf-o'; }
+														if($type == 'zip'){ $ext ='WinZip Archieve'; $ico = 'fa-file-zip-o'; }
+														if($type == 'rar'){ $ext = 'WinRar Archieve'; $ico = 'fa-file-zip-o'; }
+														if($type == 'txt'){ $ext = 'Text'; $ico = 'fa-file-text'; }
+														if($type == 'css'){ $ext = 'CSS'; $ico = 'fa-file-code-o'; }
+														if($type == 'exe'){ $ext = 'exe'; }
+														echo '
+														  <tr>
+															<td><a target="_blank" href="'.url("files/user/").''.$file->uploaded_by.'/'.$file->file_name.'.'.$file->extension.'"><i class="fa '.$ico.'"></i>'.$file->file_name.'</a></td>
+															<td>'.$ext.'</td>
+															<td>'.round($file->file_size / 1024).' KB</td>
+															<td class="text-r">'.date('m/d/y',strtotime($file->created_at)).'</td>
+															<td class="text-r">	
+																<a title="Copied!" data-clipboard-text="'.url("files/user").'/'.$file->uploaded_by.'/'.$file->file_name.'.'.$file->extension.'" href="#" class="clip btn btn-xs btn-primary"><i style="color:#fff; font-size:12px;" class="fa fa-copy"></i> Copy Link</a>
+															</td>
+														  </tr>											
+														';
+													}
+													
+												?>
+										</tbody>
+									</table>         
+									</div>
+								</div>
+								
+								<div class="form-group">
 								  <div class="col-sm-6">
-									   <label class="control-label form-label">Username</label><br/>
+										<label class="control-label form-label">Username</label><br/>
 										<input value="<?php echo $applicant->username; ?>" placeholder="Username"  type="text" class="form-control" id="username" name="username" required />
 								  </div>	
 								  <div class="col-sm-6">
@@ -187,7 +315,6 @@
 									   <label class="control-label form-label">Confirm New Password</label><br/>
 										<input placeholder="Confirm Password"  type="password" class="form-control" id="confirm_password" name="confirm_password"  />
 								  </div>
-		
 								</div>
 								
 								<hr/>

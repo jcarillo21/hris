@@ -57,7 +57,7 @@
 												<td>'.$applicant->salary.'</td>													
 												<td align="right">
 													<a href="'.url("admin/edit/applicant").'/'.$applicant->personal_info_id.'" class="modal-settings btn btn-xs btn-primary" href="#"><i class="fa fa-pencil"></i> Edit</a>
-												</td>	
+												</td>	 
 											</tr>
 											';
 											$ctr++;

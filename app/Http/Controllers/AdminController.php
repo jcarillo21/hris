@@ -467,6 +467,10 @@ class AdminController extends Controller{
 		$data['departments'] = DisplayModel::getAllDepartments();
 		$data['jobs'] = DisplayModel::getAlljobs();
 		$data['employee'] = DisplayModel::getUserViaID($id);
+		$data['education'] = DisplayModel::getEducationalBackgroundViaID($id);
+		$data['employment'] = DisplayModel::getEmploymentBackgroundViaID($id);
+		$data['files'] = DisplayModel::getAllUserFiles($id);
+		$data['reference'] = DisplayModel::getReferenceViaID($id);
 		if(count($data['employee']) < 1){
 			return Redirect::to('/admin/employees');
 		}
@@ -510,6 +514,10 @@ class AdminController extends Controller{
 		$data['departments'] = DisplayModel::getAllDepartments();
 		$data['jobs'] = DisplayModel::getAlljobs();
 		$data['applicant'] = DisplayModel::getUserViaID($id);
+		$data['education'] = DisplayModel::getEducationalBackgroundViaID($id);
+		$data['employment'] = DisplayModel::getEmploymentBackgroundViaID($id);
+		$data['files'] = DisplayModel::getAllUserFiles($id);
+		$data['reference'] = DisplayModel::getReferenceViaID($id);
 		if(count($data['applicant']) < 1){
 			return Redirect::to('/admin/applicants');
 		}

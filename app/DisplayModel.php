@@ -16,6 +16,27 @@ class DisplayModel extends Model{
 		->first(); 	
 		return $query;
 	}	
+	protected function getEducationalBackgroundViaID($personal_info_id){
+		$query = DB::table('educational_background as a')
+			->join('users as b', 'b.personal_info_id', '=', 'a.personal_info_id')	
+			->where('b.personal_info_id',$personal_info_id)
+		->get(); 	
+		return $query;
+	}		
+	protected function getEmploymentBackgroundViaID($personal_info_id){
+		$query = DB::table('employment_background as a')
+			->join('users as b', 'b.personal_info_id', '=', 'a.personal_info_id')	
+			->where('b.personal_info_id',$personal_info_id)
+		->get(); 	
+		return $query;
+	}	
+	protected function getReferenceViaID($personal_info_id){
+		$query = DB::table('references as a')->where('a.personal_info_id',$personal_info_id)
+			->join('users as b', 'b.personal_info_id', '=', 'a.personal_info_id')	
+			->where('b.personal_info_id',$personal_info_id)
+		->get(); 	
+		return $query;
+	}	
 	protected function getJobViaID($job_id){
 		$query = DB::table('jobs')->where('job_id',$job_id)
 		->first(); 	
