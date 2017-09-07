@@ -4,11 +4,7 @@
 			<!-- START CONTAINER -->
 			@include('includes/flash-message')
 			<div class="container-widget">
-<<<<<<< HEAD
 				<a href="<?php echo url('user/overtime'); ?>" class="btn btn-info"><i class="fa fa-arrow-left"></i> Back to list</a>
-=======
-				<a href="/user/overtime" class="btn btn-info"><i class="fa fa-arrow-left"></i> Back to list</a>
->>>>>>> b42320356f7f99679c074c7317143e6e872a9658
 					<p></p>
 					<div class="panel panel-default">
 						<div class="panel-title">
@@ -17,11 +13,7 @@
 						  </ul>
 						</div>
 						<div class="panel-body">		
-<<<<<<< HEAD
 							<form class="validate-user" action="<?php echo url('user/process/request-overtime'); ?>" method="POST">
-=======
-							<form class="validate-user" action="/user/process/request-overtime" method="POST">
->>>>>>> b42320356f7f99679c074c7317143e6e872a9658
 								{{ method_field('PUT') }}
 								{{ csrf_field() }} 								
 								<table class="table table-striped">
