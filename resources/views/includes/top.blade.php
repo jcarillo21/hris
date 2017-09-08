@@ -26,7 +26,12 @@
 
 
             <li class="dropdown link">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle profilebox"><img src="<?php echo url('img/'.$dp!=null ? $dp : 'default.png'.''); ?>" title="Profile Picture" alt="Profile Picture"><b>{{$name}}</b><span class="caret"></span></a>
+				<?php
+					if($dp==null){
+						$dp = 'default.png';
+					}
+				?>
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle profilebox"><img src="<?php echo url('img/'.$dp.''); ?>" alt="img"><b>{{$name}}</b><span class="caret"></span></a>
                 <ul class="dropdown-menu dropdown-menu-list dropdown-menu-right">
 					<li><a href="<?php echo url('admin/profile'); ?>"><i class="fa falist fa-user"></i>Profile</a></li>
                     <li><a href="<?php echo url('admin/files'); ?>"><i class="fa falist fa-file-o"></i>Files</a></li>
