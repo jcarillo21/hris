@@ -111,16 +111,14 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="dropzone">
-									<label class="btn btn-default btn-file">
-										Upload Resume <span class="fa fa-cloud-upload"></span>
-										<input class="file" type="file" name="resume" />
-									</label>
+									<h3>Upload Resume <span class="fa fa-cloud-upload"></span></h3>
+									<input style="margin: auto;border: 0px;" class="file" type="file" name="resume" />
 									<br/>
 									<p>Allowed File types :  .ZIP | .RAR | .DOCX</p>
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> 
 					
 					<h4>Educational Background</h4>
 					<div class="text-right">
@@ -265,10 +263,8 @@
 						<div class="row">			
 							<div class="col-sm-12">
 								<div class="dropzone">
-									<label class="btn btn-default btn-file">
-										Upload Practical Test <span class="fa fa-cloud-upload"></span>
-										<input class="file" type="file" name="practical_files" />
-									</label>
+									<h3>Upload Practical Test <span class="fa fa-cloud-upload"></span></h3>
+										<input style="margin: auto;border: 0px;" class="file" type="file" name="practical_files" />
 									<br/>
 									<p>Allowed File types :  .ZIP | .RAR</p>
 								</div>
