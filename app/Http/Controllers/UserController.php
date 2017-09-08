@@ -141,9 +141,14 @@ class UserController extends Controller{
 		$data['update_username'] = UpdateModel::updateUsername($personal_info_id,$username);	
 		$data['update_user_status'] = UpdateModel::updateUserStatus($personal_info_id,$status = 1,$system_role);
 		if($password!=null){
-			$data['update_password'] = UpdateModel::updateUserPassword($personal_info_id,Hash::make($password));
+			if($password == $confirm_password){
+				$data['update_password'] = UpdateModel::updateUserPassword($personal_info_id,Hash::make($password));
+				Session::flash('success', 'Login updated successfully!');
+			}else{
+				Session::flash('Error', 'Password did not match!');
+			}
 		}
-		Session::flash('success', 'Login updated successfully!');
+		
 		return redirect()->back();			
 	}
 	//End Profile Module
