@@ -34,11 +34,7 @@
 													<td>'.date('M d, Y',strtotime($payslip->from)).'</td>
 													<td>'.date('M d, Y',strtotime($payslip->to)).'</td>
 													<td>'.date('M d, Y',strtotime($payslip->generated_at)).'</td>
-<<<<<<< HEAD
-													<td class="text-right"><a target="_blank" href="'.url("user/generate-pdf/").''.$payslip->payslip_id.'" class="btn btn-xs btn-danger"><i class="fa fa-file-pdf-o"></i> Generate PDF</a></td>
-=======
-													<td class="text-right"><a target="_blank" href="/user/generate-pdf/'.$payslip->payslip_id.'" class="btn btn-xs btn-danger"><i class="fa fa-file-pdf-o"></i> Generate PDF</a></td>
->>>>>>> b42320356f7f99679c074c7317143e6e872a9658
+													<td class="text-right"><a target="_blank" href="'.url("user/generate-pdf").'/'.$payslip->payslip_id.'" class="btn btn-xs btn-danger"><i class="fa fa-file-pdf-o"></i> Generate PDF</a></td>
 												</tr>
 											';
 											$ctr++;
