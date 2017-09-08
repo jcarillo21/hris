@@ -18,6 +18,7 @@
 								{{ csrf_field() }} 								
 								<input value="<?php echo $pid; ?>" class="form-control" name="reviewed_by" type="hidden" required />
 								<input value="<?php echo $overtime->overtime_id; ?>" class="form-control" name="overtime_id" type="hidden" required />
+								<input value="<?php echo $overtime->personal_info_id; ?>" class="form-control" name="user_id" type="hidden" required />
 								<table class="table table-striped">
 									<thead>
 										<tr>

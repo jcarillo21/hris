@@ -693,12 +693,30 @@ class AdminController extends Controller{
 	public function processUpdateOvertime(){
 		extract($_POST);
 		
-		
 		$data['edit_ot'] = UpdateModel::UpdateOvertimeViaID($overtime_id,$date_affected,$client,$hours,stripslashes($reasons),$status,$reviewed_by);
 		
 		if($data['edit_ot']){
 			//Email user Here
-			//$email->send('jcruz@primeview.com','john@primeview.com','SUBJ','MSG');
+			$company = DisplayModel::getSettingsViaMeta('company_name');
+			$data = $this->pub;
+			$helper = $data['helper'];
+			
+			$user = DisplayModel::getUserViaID($user_id);
+			$data['date'] = $date_affected;
+			$data['name'] = $user->fname.' '.$user->mname.' '.$user->lname;
+			$data['hours'] = $hours;
+			$data['reasons'] = $reasons;
+			$data['client'] = $client;
+			$data['status'] = '';
+			if( $status == 1 ){
+				$data['status'] = 'Approved.';
+			}else{
+				$data['status'] = 'Disapproved.';
+			}
+			$data['company'] = $company->value;
+			
+			$helper->sendEmail($user->email_address,view('mail.notify-user-overtime',$data));
+			
 			Session::flash('success', 'Overtime updated successfully!');
 		}
 		return redirect()->back();		
