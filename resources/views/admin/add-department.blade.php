@@ -5,7 +5,6 @@
 			@include('includes/flash-message')
 			<div class="container-widget">
 				<a href="<?php echo url('admin/departments'); ?>" class="btn btn-info"><i class="fa fa-arrow-left"></i> Back to list</a>
-				<a href="/admin/departments" class="btn btn-info"><i class="fa fa-arrow-left"></i> Back to list</a>
 					<p></p>
 					<div class="panel panel-default">
 						<div class="panel-title">
