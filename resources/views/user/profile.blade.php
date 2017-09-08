@@ -15,7 +15,7 @@
 							<!-- Start Top -->
 							<div class="social-top">
 							  <div class="profile-left">
-								<img src="<?php echo url('/img/'.$profile->display_pic.''); ?>" alt="img" class="profile-img">
+								<img src="<?php echo url('img/'.$profile->display_pic!= null ? $profile->display_pic : 'default.png'.''); ?>" alt="Profile Picture" title="Profile Picture"  class="profile-img">
 								<h1 class="name"><?php echo $profile->fname.' '.$profile->lname; ?></h1>
 								<p class="profile-text">My profile</p>
 							  </div>
