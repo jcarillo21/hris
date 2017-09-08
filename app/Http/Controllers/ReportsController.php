@@ -162,6 +162,7 @@ class ReportsController extends Controller{
 		
 		//Output PDF
 		$data['file_name'] = strtolower($payslip->fname.'_'.$payslip->lname.'_'.$payslip->from.'_'.$payslip->to);
+		ob_end_clean();
 		PDF::Output($data['file_name'].'.pdf', 'I');
 	}
 	public function employeeReports(){

@@ -702,6 +702,7 @@ class AdminController extends Controller{
 			$helper = $data['helper'];
 			
 			$user = DisplayModel::getUserViaID($user_id);
+			
 			$data['date'] = $date_affected;
 			$data['name'] = $user->fname.' '.$user->mname.' '.$user->lname;
 			$data['hours'] = $hours;
