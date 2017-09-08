@@ -148,7 +148,7 @@
 								<!-- Start Post -->
 								  <div class="panel panel-default">
 									<h3>Login Information</h3>
-									<form id="edit-login" class="validate-user-edit form-horizontal" action="<?php echo url('admin/process/edit-login'); ?>" method="post" >
+									<form id="edit-login" class="validate-user-edit form-horizontal" action="<?php echo url('user/process/edit-login'); ?>" method="post" >
 										{{ method_field('PUT') }}
 										{{ csrf_field() }} 								
 										<input name="personal_info_id" value="<?php echo $profile->personal_info_id; ?>" type="hidden" />
@@ -163,11 +163,11 @@
 											</div>												  
 											<div class="col-sm-6">
 												<label class="control-label form-label">New Password</label><br/>
-												<input placeholder="Password"  type="password" class="form-control" id="password" name="password"  />
+												<input required placeholder="Password"  type="password" class="form-control" id="password" name="password"  />
 											</div>
 											<div class="col-sm-6">
 												<label class="control-label form-label">Confirm New Password</label><br/>
-												<input placeholder="Confirm Password"  type="password" class="form-control" id="confirm_password" name="confirm_password"  />
+												<input required placeholder="Confirm Password"  type="password" class="form-control" id="confirm_password" name="confirm_password"  />
 											</div>
 									
 										</div>
