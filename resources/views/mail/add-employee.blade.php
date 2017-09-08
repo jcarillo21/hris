@@ -21,6 +21,9 @@
 		<td><b>Password :</b></td>
 		<td><?php echo $password; ?></td>
 	</tr>
+	<tr>
+		<td><p>To change your password, Login > Profile > New Password & Confirm New Password</p></td>
+	</tr>
 	<tr style="color:#fff;  background-color:#399bff;">
 		<td colspan=2>
 			<p align="center">All Rights Reserved <?php echo $company; ?> &copy; <?php echo date('Y'); ?></p>
