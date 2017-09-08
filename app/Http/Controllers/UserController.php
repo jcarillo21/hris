@@ -132,23 +132,26 @@ class UserController extends Controller{
 	}
 	public function processEditProfile(){
 		extract($_POST);	
-		$data['update_personal_info'] = UpdateModel::updatePersonalInfo($personal_info_id,$fname,$mname,$lname,$email,$address,$contact,$bday,$cstatus,$user_role,$gender,$department,$job_title,$employment_status,$salary);
-		Session::flash('success', 'User updated successfully!');
+		$data['update_personal_info'] = UpdateModel::updatePersonalInfo($personal_info_id,$fname,$mname,$lname,$email,$address,$contact,$bday,$cstatus,'Employee',$gender,$department,$job_title,$employment_status,$salary);
+		if($data['update_personal_info']){
+			Session::flash('success', 'User profile updated successfully!');
+		}else{
+			Session::flash('danger', 'Can not save to database, no values actually changed.');
+		}
 		return redirect()->back();			
 	}
 	public function processEditLogin(){
-		extract($_POST);	
-		$data['update_username'] = UpdateModel::updateUsername($personal_info_id,$username);	
-		$data['update_user_status'] = UpdateModel::updateUserStatus($personal_info_id,$status = 1,$system_role);
-		if($password!=null){
-			if($password == $confirm_password){
+		extract($_POST);
+		// $data['update_username'] = UpdateModel::updateUsername($personal_info_id,$username);	
+		// $data['update_user_status'] = UpdateModel::updateUserStatus($personal_info_id,$status = 1,$system_role);
 
-				$data['update_password'] = UpdateModel::updateUserPassword($personal_info_id,Hash::make($password));
-				Session::flash('success', 'Login updated successfully!');
-			}else{
-				Session::flash('Error', 'Password did not match!');
-			}
+		if($password == $confirm_password){
+			$data['update_password'] = UpdateModel::updateUserPassword($personal_info_id,Hash::make($password));
+			Session::flash('success', 'Login password updated successfully!');
+		}else{
+			Session::flash('danger', 'Password did not match!');
 		}
+
 		return redirect()->back();			
 	}
 	//End Profile Module
@@ -184,8 +187,6 @@ class UserController extends Controller{
 	}	
 	public function processRequestLeave(Request $request){
 		extract($_POST);
-
-		
 		$file = new FileController();
 		$r = $request->file('leaveFile');
 		$pid = Session::get('pid');

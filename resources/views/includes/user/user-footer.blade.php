@@ -10,5 +10,4 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
 <script type="text/javascript" src="{{ URL::asset('js/plugins.js') }}"></script>
 
- </div>
 </html>

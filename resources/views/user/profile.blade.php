@@ -159,7 +159,7 @@
 											</div>	
 											<div class="col-sm-6">
 												<label class="control-label form-label">System Role</label><br/>
-												<input readonly value="<?php echo ucfirst($profile->role); ?>" placeholder="System Role"  type="text" class="form-control" id="username" name="system_role" required />	
+												<input readonly value="<?php echo ucfirst($profile->role); ?>" placeholder="System Role"  type="text" class="form-control" id="system_role" name="system_role" required />	
 											</div>												  
 											<div class="col-sm-6">
 												<label class="control-label form-label">New Password</label><br/>

@@ -189,6 +189,7 @@ $('.profilebox').on('click',function(){ $(".sidepanel").hide(); })
  * Custom JS
  */
 $(document).ready(function(){
+
 	$(".dataTable").dataTable();
 	settingsModal();
 	checkAll();
@@ -200,13 +201,13 @@ $(document).ready(function(){
 		rules: {
 			username : {
 				remote : {
-					url: "/admin/check-username-availability",	
+					url: "/app/admin/check-username-availability",	
 					type: "get",
 				}
 			},
 			email : {
 				remote : {
-					url: "/admin/check-email-availability",	
+					url: "/app/admin/check-email-availability",	
 					type: "get",
 				}
 			},
@@ -220,13 +221,13 @@ $(document).ready(function(){
 		rules: {
 			username : {
 				remote : {
-					url: "/admin/check-edit-username-availability",	
+					url: "/app/admin/check-edit-username-availability",	
 					type: "get",
 				}
 			},
 			email : {
 				remote : {
-					url: "/admin/check-edit-email-availability",	
+					url: "/app/admin/check-edit-email-availability",	
 					type: "get",
 				}
 			},
@@ -240,13 +241,13 @@ $(document).ready(function(){
 		rules: {
 			username : {
 				remote : {
-					url: "/user/check-username-availability",	
+					url: "/app/user/check-username-availability",	
 					type: "get",
 				}
 			},
 			email : {
 				remote : {
-					url: "/user/check-email-availability",	
+					url: "/app/user/check-email-availability",	
 					type: "get",
 				}
 			},
@@ -256,25 +257,26 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("form.validate-user-edit").validate({
-		rules: {
-			username : {
-				remote : {
-					url: "/user/check-edit-username-availability",	
-					type: "get",
-				}
-			},
-			email : {
-				remote : {
-					url: "/user/check-edit-email-availability",	
-					type: "get",
-				}
-			},
-			confirm_password: {
-				equalTo: "#password"
-			}
-		}
-	});
+	// $("form.validate-user-edit").validate({
+		// rules: {
+			// username : {
+				// remote : {
+					// url: "/app/user/check-edit-username-availability",	
+					// type: "get",
+				// }
+			// },
+			// email : {
+				// remote : {
+					// url: "/app/user/check-edit-email-availability",	
+					// type: "get",
+				// }
+			// },
+			// confirm_password: {
+				// equalTo: "#password"
+			// }
+		// }
+	// });
+	
 	//Payslip auto add department
 	$('#employee_id').change(function(){
 		$('#department').val($(this).val());

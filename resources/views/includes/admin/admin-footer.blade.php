@@ -1,6 +1,5 @@
 
-
-<script src="{{ URL::asset('js/bootstrap/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/bootstrap/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/bootstrap-select/bootstrap-select.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/sweet-alert/sweet-alert.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/bootstrap-toggle/bootstrap-toggle.min.js') }}"></script>
@@ -11,5 +10,5 @@
 
 <script type="text/javascript" src="{{ URL::asset('js/plugins.js') }}"></script>
 
- </div>
+
 </html>
