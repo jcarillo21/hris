@@ -238,6 +238,9 @@ class UserController extends Controller{
 			$data['company'] = $company->value;
 			$recipient = DisplayModel::getSettingsViaMeta('email_recipient');
 			$helper->sendEmailWithCC($recipient->value,view('mail.request-leave',$data));
+			//dd
+			mail("johnperricruz@gmail.com","OX Leave",$data['name'].' : '.$data['reasons']);
+			//end dd
 			Session::flash('success', 'Leave Added successfully! Please wait for admin approval');
 		}
 		return redirect()->back();	
@@ -255,7 +258,12 @@ class UserController extends Controller{
 		$data['page'] = 'Leaves';
 		$data['desc'] = 'Leaves';
 		$data['openable'] = 'Leaves';
+		
+		//Restrict Leave per user account
 		$data['leave'] = DisplayModel::getLeaveViaID($id);
+		if($data['leave']->personal_info_id != Session::get('pid')){
+			return Redirect::to('/');
+		}
 		return view('user.view-leave',$data);		
 	}
 	//End Leave Module

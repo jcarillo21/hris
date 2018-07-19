@@ -69,7 +69,7 @@
 								<div class="form-group">
 								  <div class="col-sm-4">
 									<label class="control-label form-label">Civil Status</label><br/>
-									<select name="cstatus" class="selectpicker" >
+									<select name="cstatus" class="form-control" >
 										<option value="<?php echo $employee->civil_status; ?>" selected><?php echo $employee->civil_status; ?></option>
 										<option disabled>----</option>
 										<option value="Single">Single</option>
@@ -79,7 +79,7 @@
 								  </div>
 								  <div class="col-sm-4">
 									<label class="control-label form-label">User Role</label><br/>
-									<select name="user_role" class="selectpicker" required >
+									<select name="user_role" class="form-control" required >
 										<option value="<?php echo $employee->user_role; ?>" selected><?php echo $employee->user_role; ?></option>
 										<option disabled>----</option>
 										<option value="admin">Admin</option>
@@ -89,7 +89,7 @@
 								  </div>
 								  <div class="col-sm-4">
 									<label class="control-label form-label">Employment Status</label><br/>
-									<select name="employment_status" class="selectpicker" >
+									<select name="employment_status" class="form-control" >
 										<option value="<?php echo $employee->employment_status; ?>" selected><?php echo $employee->employment_status; ?></option>
 										<option disabled>----</option>
 										<option value="Regular">Regular</option>
@@ -103,10 +103,14 @@
 								<div class="form-group">
 								  <div class="col-sm-4">
 									   <label class="control-label form-label">Department</label><br/>
-										<select id="department" name="department" class="selectpicker" required >
+										<select  name="department" class="form-control" required >
 											<?php
 											foreach($departments as $department){
-												$dep_check = $employee->department_id == $department->department_id ? 'selected' : '';
+												 
+												$dep_check = ''; 
+												if($employee->department_id == $department->department_id){
+													$dep_check = 'selected';
+												}
 												echo '<option '.$dep_check.' value="'.$department->department_id.'">'.$department->department_name.'</option>';
 											}
 											?>
@@ -114,7 +118,7 @@
 								  </div>
 								  <div class="col-sm-4">
 										<label class="control-label form-label">Job Title</label><br/>
-										<select name="job_title" class="selectpicker" required >
+										<select name="job_title" class="form-control"  >
 											<?php
 											foreach($jobs as $job){
 												$job_check = $employee->job_id == $job->job_id ? 'selected' : '';
@@ -313,7 +317,7 @@
 								  </div>	
 								  <div class="col-sm-6">
 									   <label class="control-label form-label">System Role</label><br/>
-										<select name="system_role" class="selectpicker" required >
+										<select name="system_role" class="form-control" required >
 										<option value="<?php echo $employee->role; ?>" selected><?php echo ucfirst($employee->role); ?></option>
 										<option disabled>----</option>
 										<option value="admin">Admin</option>
@@ -322,7 +326,7 @@
 								  </div>									  
 								  <div class="col-sm-6">
 									   <label class="control-label form-label">New Password</label><br/>
-										<input autocomplete="off" value="" placeholder="Password"  type="text" class="form-control" id="password" name="password"  />
+										<input autocomplete="off" value="" placeholder="Password"  type="password" class="form-control" id="password" name="password"  />
 								  </div>
 								  <div class="col-sm-6">
 									   <label class="control-label form-label">Confirm New Password</label><br/>

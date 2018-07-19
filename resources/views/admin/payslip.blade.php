@@ -13,7 +13,7 @@
 						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 							<li role="presentation"><a class="delete" data-form="#DeletePayslip" role="menuitem" href="#">Delete</a></li>
 							<li role="presentation"><a role="menuitem" data-toggle="modal" data-target="#addPayslip" href="#">Bulk Upload</a></li>
-							<li role="presentation"><a role="menuitem" tabindex="-1" href="/admin/payslip/new">Add New Payslip</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo url('admin/payslip/new'); ?>">Add New Payslip</a></li>
 							<li role="presentation"><a role="menuitem" href="<?php echo url('files/templates/payslip.csv'); ?>">Download CSV template</a></li>
 						</ul>
 				</div><br/>
@@ -30,7 +30,7 @@
 										<tr  class="no-sort">
 											<th><div class="checkbox"><input type="checkbox" id="check_all"/><label for="check_all"></label></div></th>							
 											<th>#</th>
-											<th>Payslip #</th>
+											<!--<th>Payslip #</th>-->
 											<th>Name</th>
 											<th>From</th>
 											<th>To</th>
@@ -46,7 +46,7 @@
 													<tr>
 														<td style="text-align: left; padding-left: 18px;"><div class="checkbox"><input value="'.$payslip->payslip_id.'" type="checkbox" name="payslip_id[]" id="payslip_id_'.$ctr.'"/><label for="payslip_id_'.$ctr.'"></label></div></td>													
 														<td>'.$ctr.'</td>
-														<td>'.$payslip->payslip_id.'</td>
+														<!--<td>'.$payslip->payslip_id.'</td>-->
 														<td>'.$payslip->fname.' '.$payslip->lname.'</td>
 														<td>'.date('M d, Y',strtotime($payslip->from)).'</td>
 														<td>'.date('M d, Y',strtotime($payslip->to)).'</td>
@@ -62,7 +62,7 @@
 										<tr class="no-sort">
 											<th><div class="checkbox"><input type="checkbox" id="check_all"/><label for="check_all"></label></div></th>			
 											<th>#</th>
-											<th>Payslip #</th>
+											<!--<th>Payslip #</th>-->
 											<th>Name</th>
 											<th>From</th>
 											<th>To</th>

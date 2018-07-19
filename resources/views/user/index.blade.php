@@ -131,7 +131,7 @@
 								start  : '".$leave->from."',
 								end    : '".date('Y-M-d',strtotime($leave->to . ' +1 day'))."',
 								color  : '".$color."',
-								url    : '/admin/edit-leave/".$leave->leave_id."'
+								url    : '".url('/')."/user/view-leave/".$leave->leave_id."'
 							 },
 							";
 						}

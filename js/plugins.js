@@ -189,16 +189,33 @@ $('.profilebox').on('click',function(){ $(".sidepanel").hide(); })
  * Custom JS
  */
 $(document).ready(function(){
+	//Leave and OT
+	approveDisapprove(); 
 	
+	//Add WYSIWYG
 	$('textarea.wysiwyg').summernote();
 
-	$(".dataTable").dataTable();
+	//Data Table init
+	$(".dataTable").dataTable( {
+        "columnDefs": [
+			{
+			  "targets": 0,
+			  "orderable": false,
+			}
+		]
+	});
+	
+	//Modal
 	settingsModal();
+	
+	//Check all checkboxes
 	checkAll();
 	
 	//submitUsingATag('.a_submit');
 	sweetAlertInit('.delete');
 
+
+ 
 	$("form.validate-admin").validate({
 		rules: {
 			username : {
@@ -405,21 +422,45 @@ function addApplicationFormFields(){
 		e.preventDefault();
 		var container = $(this).data('target');
 		var dates;
-		for(var x = 2017; x >= 1917; x--){
+		for(var x = 2018; x >= 1917; x--){
 			dates +='<option value="'+x+'" >'+x+'</option>';
 		}
-		$(container).append('<div class="educ-append"><div class="form-group"><div class="row"><div class="col-sm-6"><label class="control-label form-label">School name</label><input placeholder="School name" type="text" class="form-control" id="school-name" name="school_name[]" required=""></div><div class="col-sm-3"><label class="control-label form-label">FROM</label><br/><select style="width:100%;" name="school_from[]" id="school_from" class="selectpicker" ><option selected disabled>--FROM--</option>'+dates+'</select></div><div class="col-sm-3"><label class="control-label form-label">TO</label><br/><select style="width:100%;" name="school_to[]" class="selectpicker" ><option selected disabled>--TO--</option>'+dates+'</select></div></div></div></div>');
+		$(container).append('<div class="educ-append"><div class="form-group"><div class="row"><div class="col-sm-6"><label class="control-label form-label">School name</label><input placeholder="School name" type="text" class="form-control" id="school-name" name="school_name[]" ></div><div class="col-sm-3"><label class="control-label form-label">FROM</label><br/><select style="width:100%;" name="school_from[]" id="school_from" class="selectpicker" ><option selected disabled>--FROM--</option>'+dates+'</select></div><div class="col-sm-3"><label class="control-label form-label">TO</label><br/><select style="width:100%;" name="school_to[]" class="selectpicker" ><option selected disabled>--TO--</option>'+dates+'</select></div></div></div></div>');
 	});
 	
 	$('a#btn-emp').click(function(e){
 		e.preventDefault();
 		var container = $(this).data('target');
-		$(container).append('<hr/><div class="emp-append-container"><div class="form-group"><div class="row"><div class="col-sm-6"><label class="control-label form-label">Company Name</label><input placeholder="Company name" type="text" class="form-control" id="emp_company_name" name="emp_company_name[]" required=""></div><div class="col-sm-6"><label class="control-label form-label">Position</label><input placeholder="Position" type="text" class="form-control" id="emp_position" name="emp_position[]" required=""></div></div><div class="form-group"><div class="row"><div class="col-sm-6"><label class="control-label form-label">Start</label><input placeholder="Start" type="month" class="form-control" id="emp_start" name="emp_start[]" required=""></div><div class="col-sm-6"><label class="control-label form-label">End</label><input placeholder="End" type="month" class="form-control" id="emp_end" name="emp_end[]" ></div></div></div><div class="row"><div class="col-sm-12"><label class="control-label form-label">Reason of Leaving</label><textarea class="form-control" id="reason" name="reason[]"></textarea></div></div></div></div>');
+		$(container).append('<hr/><div class="emp-append-container"><div class="form-group"><div class="row"><div class="col-sm-6"><label class="control-label form-label">Company Name</label><input placeholder="Company name" type="text" class="form-control" id="emp_company_name" name="emp_company_name[]" ></div><div class="col-sm-6"><label class="control-label form-label">Position</label><input placeholder="Position" type="text" class="form-control" id="emp_position" name="emp_position[]" ></div></div><div class="form-group"><div class="row"><div class="col-sm-6"><label class="control-label form-label">Start</label><input placeholder="Start" type="month" class="form-control" id="emp_start" name="emp_start[]" ></div><div class="col-sm-6"><label class="control-label form-label">End</label><input placeholder="End" type="month" class="form-control" id="emp_end" name="emp_end[]" ></div></div></div><div class="row"><div class="col-sm-12"><label class="control-label form-label">Reason of Leaving</label><textarea class="form-control" id="reason" name="reason[]"></textarea></div></div></div></div>');
 	});
 	
 	$('a#btn-ref').click(function(e){
 		e.preventDefault();
 		var container = $(this).data('target');
-		$(container).append('<hr/><div class="ref-append-container"><div class="form-group"><div class="row"><div class="col-sm-3"><label class="control-label form-label">Name of Reference</label><input placeholder="Reference Name" type="text" class="form-control" id="ref_reference_name" name="ref_reference_name[]" required=""></div><div class="col-sm-3"><label class="control-label form-label">Position</label><input placeholder="Position" type="text" class="form-control" id="ref_position" name="ref_position[]" required=""></div><div class="col-sm-3"><label class="control-label form-label">Company / Organization Name</label><input placeholder="Company Name / Organization Name" type="text" class="form-control" id="ref_company_name" name="ref_company_name[]" required=""></div><div class="col-sm-3"><label class="control-label form-label">Contact</label><input placeholder="Reference Contact #" type="text" class="form-control" id="ref_contact" name="ref_contact[]" required=""></div></div></div></div>');
+		$(container).append('<hr/><div class="ref-append-container"><div class="form-group"><div class="row"><div class="col-sm-3"><label class="control-label form-label">Name of Reference</label><input placeholder="Reference Name" type="text" class="form-control" id="ref_reference_name" name="ref_reference_name[]" ></div><div class="col-sm-3"><label class="control-label form-label">Position</label><input placeholder="Position" type="text" class="form-control" id="ref_position" name="ref_position[]" ></div><div class="col-sm-3"><label class="control-label form-label">Company / Organization Name</label><input placeholder="Company Name / Organization Name" type="text" class="form-control" id="ref_company_name" name="ref_company_name[]" ></div><div class="col-sm-3"><label class="control-label form-label">Contact</label><input placeholder="Reference Contact #" type="text" class="form-control" id="ref_contact" name="ref_contact[]" ></div></div></div></div>');
+	});
+}
+function approveDisapprove(){
+	
+	$('select#approve-disapprove').change(function(){
+		var isChecked = false;
+		var formID = $(this).closest('form');
+		formID.find('input').each(function(){
+			if($(this).prop("checked")){
+				isChecked = true;
+			}		
+		});
+		if(isChecked == true){		
+			var conf = confirm("Are you sure to proceed? This action can not be undone.");
+			if(conf){
+				formID.submit();
+			}else{
+				location.reload();
+			}
+			
+		}else{
+			alert("Must select at least one from the table below.");
+			location.reload();
+		}
 	});
 }

@@ -2,7 +2,17 @@
 	@section('content')
 		@include('includes/breadcrumbs')
 			@include('includes/flash-message')
-			<div class="container-widget">
+			<form id="overTimeStatus" action="<?php echo url('admin/process/bulk-overtime-process'); ?>" method="POST">
+				{{ method_field('PUT') }}
+				{{ csrf_field() }} 
+				
+				<select style="width:200px;" name="remark" id="approve-disapprove" class="form-control">
+					<option selected disabled">--SELECT ACTION--</a></li>
+					<option value="1">Bulk Approve</a></li>
+					<option value="2">Bulk Disapprove</a></li>
+				</select>
+				<br/>
+				<div class="container-widget">
 				<div class="panel panel-default">
 					<div class="panel-title">
 					  <ul class="panel-tools">
@@ -13,6 +23,7 @@
 							<table class="table display dataTable">
 								<thead>
 									<tr  class="no-sort">
+										<th><div class="checkbox"><input type="checkbox" id="check_all"/><label for="check_all"></label></div></th>
 										<th>#</th>
 										<th>Name</th>
 										<th>Date Affected</th>
@@ -34,6 +45,7 @@
 											}
 											echo '
 												<tr>
+													<td style="text-align: left; padding-left: 18px;"><div class="checkbox"><input value="'.$ot->overtime_id.'" type="checkbox" name="overtime_id[]" id="overtime_id'.$ctr.'"/><label for="overtime_id'.$ctr.'"></label></div></td>
 													<td>'.$ctr.'</td>
 													<td>'.$ot->firstname.' '.$ot->lastname.'</td>
 													<td>'.date('M d, Y',strtotime($ot->date_requested)).'</td>
@@ -45,9 +57,10 @@
 											$ctr++;
 										}
 									?>
-								</tbody>
+								</tbody> 
 								<tfoot>
 									<tr class="no-sort">
+										<th><div class="checkbox"><input type="checkbox" id="check_all"/><label for="check_all"></label></div></th>
 										<th>#</th>
 										<th>Name</th>
 										<th>Date Affected</th>
@@ -59,6 +72,7 @@
 							</table>
 						</div>
 					</div>
-			</div>
+				</div>
+			</form>
 		@stop
 		 

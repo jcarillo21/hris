@@ -2,6 +2,16 @@
 	@section('content')
 		@include('includes/breadcrumbs')
 			@include('includes/flash-message')
+		<form id="leaveStatus" action="<?php echo url('admin/process/bulk-leave-process'); ?>" method="POST">
+			{{ method_field('PUT') }}
+			{{ csrf_field() }} 
+			
+			<select style="width:200px;" name="remark" id="approve-disapprove" class="form-control">
+				<option selected disabled">--SELECT ACTION--</a></li>
+				<option value="1">Bulk Approve</a></li>
+				<option value="2">Bulk Disapprove</a></li>
+			</select>
+			<br/>
 			<div class="container-widget">
 				<div class="panel panel-default">
 					<div class="panel-title">
@@ -13,6 +23,7 @@
 							<table class="table display dataTable">
 								<thead>
 									<tr  class="no-sort">
+										<th><div class="checkbox"><input type="checkbox" id="check_all"/><label for="check_all"></label></div></th>
 										<th>#</th>
 										<th>Name</th>
 										<th>From</th>
@@ -26,6 +37,7 @@
 									<?php
 										$ctr = 1;
 										foreach($leaves as $leave){
+											
 											if($leave->status == 0){
 												$status = "<span class='label label-warning'>Pending</span>";
 											}else if($leave->status == 1){
@@ -35,7 +47,8 @@
 											}
 											echo '
 												<tr>
-													<td>'.$ctr.'</td>
+													<td style="text-align: left; padding-left: 18px;"><div class="checkbox"><input value="'.$leave->leave_id.'" type="checkbox" name="leave_id[]" id="leave_id'.$ctr.'"/><label for="leave_id'.$ctr.'"></label></div></td>
+													<td>'.$ctr.'</td> 
 													<td>'.$leave->firstname.' '.$leave->lastname.'</td>
 													<td>'.date('M d, Y',strtotime($leave->from)).'</td>
 													<td>'.date('M d, Y',strtotime($leave->to)).'</td>
@@ -50,6 +63,7 @@
 								</tbody>
 								<tfoot>
 									<tr class="no-sort">
+										<th><div class="checkbox"><input type="checkbox" id="check_all"/><label for="check_all"></label></div></th>
 										<th>#</th>
 										<th>Name</th>
 										<th>From</th>
@@ -63,5 +77,6 @@
 						</div>
 					</div>
 			</div>
+			</form>
 		@stop
 		 

@@ -39,7 +39,7 @@
 									</tr>
 									<tr>
 										<td><label class="control-label form-label">Hours : </label></td>
-										<td><input value="" placeholder="Hours" class="form-control" name="hours" type="number" required /></td>
+										<td><input value="" placeholder="Hours" class="form-control" name="hours" type="text" required /></td>
 									</tr>
 									<tr>
 										<td><label class="control-label form-label">Client(s) Involved: </label></td>

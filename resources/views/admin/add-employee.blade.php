@@ -56,7 +56,7 @@
 								<div class="form-group">
 								  <div class="col-sm-4">
 									<label class="control-label form-label">Civil Status*</label><br/>
-									<select name="cstatus" class="selectpicker" required >
+									<select name="cstatus" class="form-control" required >
 										<option disabled>--Select--</option>
 										<option value="Single">Single</option>
 										<option value="Married">Married</option>
@@ -65,7 +65,7 @@
 								  </div> 
 								  <div class="col-sm-4">
 									<label class="control-label form-label">User Role*</label><br/>
-									<select name="user_role" class="selectpicker" required >
+									<select name="user_role" class="form-control" required >
 										<option disabled>--Select--</option>
 										<option value="Employee">Employee</option>
 										<option value="admin">Admin</option>
@@ -74,7 +74,7 @@
 								  </div>
 								  <div class="col-sm-4">
 									<label class="control-label form-label">Employment Status*</label><br/>
-									<select required name="employment_status" class="selectpicker" >
+									<select required name="employment_status" class="form-control" >
 										<option disabled>--Select--</option>
 										<option value="Probationary">Probationary</option>
 										<option value="Regular">Regular</option>
@@ -83,13 +83,13 @@
 									</select>
 								  </div>
 
-								</div>
+								</div>  
 								
 								<div class="form-group">
 								
 								  <div class="col-sm-4">
 									   <label class="control-label form-label">Department*</label><br/>
-										<select id="department" name="department" class="selectpicker" required >
+										<select name="department" class="form-control" required >
 											<?php
 											foreach($departments as $department){
 												echo '<option value="'.$department->department_id.'">'.$department->department_name.'</option>';
@@ -99,7 +99,7 @@
 								  </div>
 								  <div class="col-sm-4">
 									<label class="control-label form-label">Job Title*</label><br/>
-										<select name="job_title" class="selectpicker" required >
+										<select name="job_title" class="form-control" required >
 											<?php
 											foreach($jobs as $job){	
 												echo '<option  value="'.$job->job_id.'">'.$job->job_title.'</option>';
@@ -158,7 +158,7 @@
 									</div>
 									<div class="col-md-4">
 										<label class="control-label form-label">Employee #</label><br/>
-										<input value="" type="text" class="form-control" id="employee_id" name="employee_id" />										
+										<input value="0" type="text" class="form-control" id="employee_id" name="employee_id" required />										
 									</div>
 								</div>								
 								<hr/>
@@ -170,7 +170,7 @@
 								  </div>	
 								  <div class="col-sm-6">
 									   <label class="control-label form-label">System Role*</label><br/>
-											<select name="system_role" class="selectpicker" required >
+											<select name="system_role" class="form-control" required >
 											<option disabled>--Select--</option>
 											<option value="user">User</option>
 											<option value="admin">Admin</option>

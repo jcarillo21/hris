@@ -28,11 +28,13 @@ class DisplayModel extends Model{
 			->join('users as b', 'b.personal_info_id', '=', 'a.personal_info_id')	
 			->where('b.personal_info_id',$personal_info_id)
 		->get(); 	
-		return $query;
+		return $query; 
 	}	
 	protected function getReferenceViaID($personal_info_id){
-		$query = DB::table('references as a')->where('a.personal_info_id',$personal_info_id)
+		$query = DB::table('references as a')
+			->select('a.*','b.*','a.contact_number as reference_number')
 			->join('users as b', 'b.personal_info_id', '=', 'a.personal_info_id')	
+			->where('a.personal_info_id',$personal_info_id)
 			->where('b.personal_info_id',$personal_info_id)
 		->get(); 	
 		return $query;
@@ -55,10 +57,13 @@ class DisplayModel extends Model{
 		return $query;
 	}	
 	protected function getAllEmployees(){
-		$query = DB::table('users as a')->where('user_role','Employee')
+		$query = DB::table('users as a')
+			->where('user_role','Employee')
+			->where('b.status',1)
 			->join('logins as b', 'b.personal_info_id', '=', 'a.personal_info_id')
 			->leftjoin('jobs as c', 'c.job_id', '=', 'a.job_id')
 			->leftjoin('departments as d', 'd.department_id', '=', 'a.department_id')
+			->orderBy('a.lname', 'asc')
 		->get(); 	
 		return $query;
 	} 
@@ -113,6 +118,7 @@ class DisplayModel extends Model{
 	protected function getAlljobs(){
 		$query = DB::table('jobs as a')
 		->leftjoin('departments as b', 'b.department_id', '=', 'a.department_id')
+		->orderBy('a.job_title','asc')
 		->get();
 		return $query;
 	}	
@@ -179,6 +185,7 @@ class DisplayModel extends Model{
 	}
 	protected function getPayslipViaID($ID){
 		$query = DB::table('payslip as a')
+		->select('a.sss as sss_cont','a.philhealth as philhealth_cont','a.pagibig as pagibig_cont','a.*','b.*','c.*')
 		->join('users as b','a.personal_info_id','=','b.personal_info_id')
 		->join('departments as c', 'c.department_id', '=', 'b.department_id')
 		->where('payslip_id',$ID)
@@ -203,6 +210,7 @@ class DisplayModel extends Model{
 	protected function getAllOvertimeViaPID($PID){
 		$query = DB::table('overtime')
 		->where('personal_info_id',$PID)
+		->orderBy('date_requested', 'desc')
 		->get();
 		return $query;	
 	}
@@ -219,13 +227,15 @@ class DisplayModel extends Model{
 		$query = DB::table('overtime as a')
 		->select('a.*','b.*','c.*','b.fname as firstname','b.lname as lastname')
 		->join('users as b','b.personal_info_id','=','a.personal_info_id')		
-		->leftjoin('users as c','c.personal_info_id','=','a.reviewed_by')
+		->leftjoin('users as c','c.personal_info_id','=','a.reviewed_by')				
+		->orderBy('generated_at', 'desc')
 		->get();
 		return $query;	
 	}
 	protected function getAttendanceViaID($id){
-		$query = DB::table('attendance as a')->where('a.attendance_id',$id)
-			->join('users as b', 'b.personal_info_id', '=', 'a.personal_info_id')	
+		$query = DB::table('attendance as a')
+		->where('a.attendance_id',$id)
+		->join('users as b', 'b.personal_info_id', '=', 'a.personal_info_id')	
 		->first(); 	
 		return $query;
 	}
@@ -235,5 +245,13 @@ class DisplayModel extends Model{
 			->get(); 	
 		return $query;		
 	}
+	protected function getLeaveInfoViaID($leave_id){
+		$query = DB::table('leaves as a')
+		->where('a.leave_id',$leave_id)
+		->join('users as b', 'a.personal_info_id', '=', 'b.personal_info_id')	
+		->first(); 	
+		return $query;		
+	}
+	
 
 }

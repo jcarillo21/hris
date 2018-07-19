@@ -18,9 +18,9 @@
 										<label class="control-label form-label">Employees </label>
 										<select name="employee" class="selectpicker" required >
 											<option selected disabled>--Select--</option>
-											<?php
+											<?php 
 												foreach($employees as $employee){
-													echo '<option value="'.$employee->personal_info_id.'">'.$employee->fname.' '.$employee->lname.'</option>';
+													echo '<option value="'.$employee->personal_info_id.'">'.$employee->fname.', '.$employee->lname.'</option>';
 												}
 											?>
 										</select>										

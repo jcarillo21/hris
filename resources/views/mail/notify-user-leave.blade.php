@@ -11,7 +11,7 @@
 	</tr>
 	<tr>
 		<td width="40%" ><b>Dates Affected : </b></td>
-		<td><?php echo $from.'-'.$to; ?></td>
+		<td><?php echo $from.'    -    '.$to; ?></td>
 	</tr>
 	<tr>
 		<td><b>Leave Type :</b></td>

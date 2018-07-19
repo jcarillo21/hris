@@ -114,6 +114,26 @@ class UpdateModel extends Model{
 			->update($values);		
 		return (($query) ? true : false);		
 	}
+	protected function UpdateLeaveRemarkViaID($leave_id,$remark,$reviewed_by){
+		$values = array(
+			'reviewed_by' => $reviewed_by,
+			'status' => $remark
+		);			
+		$query = DB::table('leaves')
+			->where('leave_id',$leave_id)
+			->update($values);		
+		return (($query) ? true : false);
+	}
+	protected function UpdateOvertimeRemarkViaID($overtime_id,$status,$reviewed_by){
+		$values = array(
+			'status' => $status,
+			'reviewed_by' => $reviewed_by
+		);		
+		$query = DB::table('overtime')
+			->where('overtime_id',$overtime_id)
+			->update($values);		
+		return (($query) ? true : false);		
+	}
 	protected function UpdateOvertimeViaID($overtime_id,$date_requested,$client,$hours,$reasons,$status,$reviewed_by){
 		$values = array(
 			'hours' => $hours,

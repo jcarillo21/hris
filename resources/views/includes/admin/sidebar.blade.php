@@ -16,7 +16,7 @@
             <li><a <?php echo($openable == 'Leaves') ? 'class="active"' : '' ;?> href="#"><span class="icon color9"><i class="fa fa-plane"></i></span>Leaves<span class="caret"></span></a>
                 <ul <?php echo($openable == 'Leaves') ? 'style="display:block;"' : '' ;?>>
                     <li><a <?php echo($page == 'Leaves') ? 'class="active"' : '' ;?> href="<?php echo url('admin/leaves'); ?>">View / Edit</a></li>
-					<li><a <?php echo($page == 'Add Leave') ? 'class="active"' : '' ;?> href="<?php echo url('admin/add-leave'); ?>">Add</a></li>
+					<!--<li><a <?php echo($page == 'Add Leave') ? 'class="active"' : '' ;?> href="<?php echo url('admin/add-leave'); ?>">Add</a></li>-->
                 </ul>
             </li>
             <li><a href="#"><span class="icon color9"><i class="fa fa-barcode "></i></span>Biometrics<span class="caret"></span></a>
@@ -49,7 +49,7 @@
                     <li><a target="_blank" data-toggle="modal" data-target="#employee-reports" href="#">Employee Reports</a></li>
 					<li><a data-toggle="modal" data-target="#applicant-reports" href="#">Applicant Reports</a></li>
 					<li><a data-toggle="modal" data-target="#payslip-reports" href="#">Payslip Generator</a></li>
-					<li><a data-toggle="modal" data-target="#attendance-reports" href="#">Biometrics Report</a></li>
+					<li><a data-toggle="modal" data-targret="#attendance-reports" href="#">Biometrics Report</a></li>
 					<li><a data-toggle="modal" data-target="#resume-reports" href="#">CV's / Resumes</a></li>
 					<li><a data-toggle="modal" data-target="#leaves-reports"href="#">Leaves</a></li>
                 </ul>
@@ -179,12 +179,62 @@
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
 			<h4 class="modal-title">Leaves</h4>
 		  </div>
-		  <div class="modal-body">
-			<p>Waiting for admin forms...</p>
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		  </div>
+			<form class="form-horizontal" action="<?php echo url('admin/process/filter-leave'); ?>" method="post" >
+				{{ method_field('PUT') }}
+				{{ csrf_field() }} 	
+				  <div class="modal-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-6">
+									<label>From : </label>
+									<input class="form-control" type="date" name="from" required />
+								</div>
+								<div class="col-md-6">
+									<label>To : </label>
+									<input class="form-control" type="date" name="to" required/>
+								</div>
+								<div class="col-md-12">
+									<label>Leave Type : </label>
+									<select class="form-control" name="leave_type" required>
+										<option value="SL">Sick Leave</option>
+										<option value="VL">Vacation Leave</option>
+										<option value="EL">Emergency Leave</option>
+										<option value="ALL">All Leaves</option>
+									</select>
+								</div>
+								<div class="col-md-12">
+									<label>Employee : </label>
+									<select class="form-control" name="employee" class="form-control" required>
+										<option value="all">--Select All Employees--</option>
+										<?php 
+											foreach($employee_reports as $option){
+												echo '<option value="'.$option->personal_info_id.'">'.$option->lname.' '.$option->fname.' '.$option->mname.'</option>';
+											} 
+										?>
+									</select>
+								</div>		
+								<div class="col-md-6">
+									<label>Field to order : </label>
+									<select class="form-control" class="form-control" name="field" required>
+										<option value="name">Name</option>
+										<option value="date">Date</option>
+									</select>
+								</div>
+								<div class="col-md-6">
+									<label>Order By : </label>
+									<select class="form-control" class="form-control" name="order" required>
+										<option value="asc">ASC</option>
+										<option value="desc">DESC</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					  </div>
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						<button class="btn btn-default">Generate</button>
+					  </div>
+			</form>
 		</div>
 	  </div>
 	</div>

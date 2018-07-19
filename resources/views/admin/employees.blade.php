@@ -29,13 +29,11 @@
 										<th><div class="checkbox"><input type="checkbox" id="check_all"/><label for="check_all"></label></div></th>
 										<th>#</th>
 										<th>Name</th>
-										<th>Contact Number</th>
+										<th>Contact</th>
 										<th>Email address</th>
-										<th>Civil Status</th>
 										<th>Birthday</th>
 										<th>Job Title</th>
-										<th>Department</th>
-										<th class="text-right">System Status</th>
+										<th class="text-right">Status</th>
 										<th class="text-right">Action</th>
 									</tr>
 								</thead>
@@ -50,10 +48,8 @@
 												<td>'.$employee->fname.' '.$employee->mname.' '.$employee->lname.'</td>
 												<td>'.$employee->contact_number.'</td>
 												<td>'.$employee->email_address.'</td>
-												<td>'.$employee->civil_status.'</td>
 												<td>'.$employee->birthday.'</td>
 												<td>'.$employee->job_title.'</td>
-												<td>'.$employee->department_name.'</td>
 												<td align="right">';
 												echo (($employee->status == 1) ? '<span class="label label-success">Enabled</span>' : '<span class="label label-danger">Disabled</span>');
 												echo'</td>
@@ -71,13 +67,11 @@
 										<th><div class="checkbox"><input type="checkbox" id="check_all"/><label for="check_all"></label></div></th>
 										<th>#</th>
 										<th>Name</th>
-										<th>Contact Number</th>
+										<th>Contact</th>
 										<th>Email address</th>
-										<th>Civil Status</th>
 										<th>Birthday</th>
-										<th>Department</th>
 										<th>Job Title</th>
-										<th class="text-right">System Status</th>
+										<th class="text-right">Status</th>
 										<th class="text-right">Action</th>
 									</tr>
 								</tfoot>

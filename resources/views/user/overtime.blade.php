@@ -37,7 +37,7 @@
 													<td>'.date('M d, Y',strtotime($ot->date_requested)).'</td>
 													<td>'.$ot->hours.'</td>
 													<td>'.$status.'</td>
-													<td class="text-right"><a href="'.url("user/view-overtime/").''.$ot->overtime_id.'" class="btn btn-xs btn-danger"><i class="fa fa-eye"></i> View</a></td>
+													<td class="text-right"><a href="'.url("user/view-overtime").'/'.$ot->overtime_id.'" class="btn btn-xs btn-danger"><i class="fa fa-eye"></i> View</a></td>
 												</tr>
 											';
 											$ctr++;

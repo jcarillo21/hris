@@ -10,7 +10,15 @@
 					  </ul>
 					</div>
 					<div class="panel-body">
+
+					
 						<form id="request-leave" class="validate-user form-horizontal" action="<?php echo url('user/process/request-leave'); ?>" method="post" enctype="multipart/form-data">
+												
+						<div class="form-group">
+							<div class="alert alert-warning" role="alert">
+								<p><i aria-hidden="true" class="fa fa-warning"></i> For <b>Vacation Leaves : </b> Please make sure you have emailed first and your leave is approved.</p>
+							</div>
+						</div>
 								{{ method_field('PUT') }}
 								{{ csrf_field() }} 					
 								<div class="form-group">
@@ -40,7 +48,7 @@
 										<textarea name="reasons" rows="8" class="wysiwyg form-control"></textarea>
 									</div>
 								</div>		
-								<div class="dropzone">
+								<div style="visibility:hidden;" class="dropzone">
 									<label class="btn btn-default btn-file">
 										<span class="text-rep">CLICK HERE TO SELECT FILE</span> <span class="fa fa-cloud-upload"></span>
 										<input class="dropzone file" type="file" name="leaveFile" />

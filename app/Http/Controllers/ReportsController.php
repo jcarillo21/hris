@@ -88,84 +88,114 @@ class ReportsController extends Controller{
 		$this->pdf_settings("Payslip","Payslip");
 		
 		$payslip = DisplayModel::getPayslipViaID($id);
+		
+		//Restrict payslip for each user
+		if(Session::get('role') == 'user'){
+			if($payslip->personal_info_id != Session::get('pid')){
+				return Redirect::to('/');
+			}
+		}
+		 
 		$row = count($payslip);
 		if($row < 1){
 			return redirect()->back();		
 		}
 
+		$total_deduct = $payslip->wtax + $payslip->sss_cont + $payslip->philhealth_cont + $payslip->pagibig_cont;
+		$gross_income = $payslip->basic_pay + $payslip->night_diff + $payslip->ot_pay + $payslip->holiday_pay + $payslip->dm + $payslip->cola + $payslip->bonus;
+		
 		$content = '
-			<table cellpadding="4">
+			<table width="350px" cellpadding="4">
 				<tr>
 					<td style="border:2px solid #59cff4;" align="center" colspan="2"><img src="http://staffportal.optimizex.com/wp-content/uploads/2014/04/optimizex_logo3213.png" border="0" width="150" /></td>
 				</tr>
 				<tr>
-					<td style="border:2px solid #59cff4;">Name : '.$payslip->fname.' '.$payslip->mname.' '.$payslip->lname.'</td>
+					<td style="border:2px solid #59cff4;"><b>Name :</b> '.$payslip->fname.' '.$payslip->mname.' '.$payslip->lname.'</td>
 					<td style="border:2px solid #59cff4;">
-						Pay Period : <br/><br/>
-						From : '.date('M d, Y',strtotime($payslip->from)).'<br/>
-						To : '.date('M d, Y',strtotime($payslip->to)).'
+						<b>Pay Period :</b> <br/><br/>
+						<b>From :</b> '.date('M d, Y',strtotime($payslip->from)).'<br/>
+						<b>To :</b> '.date('M d, Y',strtotime($payslip->to)).'
 					</td>
-				</tr>
+				</tr> 
 				<tr>
-					<td style="border:2px solid #59cff4;">Department : '.$payslip->department_name.'</td> 
-					<td style="border:2px solid #59cff4;">Tax Status : '.$payslip->tax_status.' </td>
+					<td style="border:2px solid #59cff4;"><b>Department :</b> '.$payslip->department_name.'</td> 
+					<td style="border:2px solid #59cff4;"><b>Tax Status :</b> '.$payslip->tax_status.' </td>
 				</tr>
 				
 				<tr>
 					<td style="color:#fff; background-color:#59cff4; border:2px solid #59cff4;" align="center" colspan="2"><strong>Payment Details</strong></td>
 				</tr>
 
-				<tr>
-					<td style="border:2px solid #59cff4;">Basic Pay :</td> 
-					<td style="border:2px solid #59cff4;">'.number_format($payslip->basic_pay).' php</td>
+				<tr> 
+					<td style="border:2px solid #59cff4;"><b>Basic Pay :</b></td> 
+					<td style="border:2px solid #59cff4;">PHP '.number_format($payslip->basic_pay,2).'</td>
 				</tr>
 				<tr>
-					<td style="border:2px solid #59cff4;">Night Diff :</td> 
-					<td style="border:2px solid #59cff4;">'.number_format($payslip->night_diff).' php</td>
+					<td style="border:2px solid #59cff4;"><b>Night Diff :</b></td> 
+					<td style="border:2px solid #59cff4;">PHP '.number_format($payslip->night_diff,2).'</td>
 				</tr>
 				<tr>
-					<td style="border:2px solid #59cff4;">OT Pay :</td> 
-					<td style="border:2px solid #59cff4;">'.number_format($payslip->ot_pay).' php</td>
+					<td style="border:2px solid #59cff4;"><b>OT Pay :</b></td> 
+					<td style="border:2px solid #59cff4;">PHP '.number_format($payslip->ot_pay,2).'</td>
 				</tr>
 				<tr>
-					<td style="border:2px solid #59cff4;">Holiday Pay :</td> 
-					<td style="border:2px solid #59cff4;">'.number_format($payslip->holiday_pay).' php</td>
+					<td style="border:2px solid #59cff4;"><b>Holiday Pay :</b></td> 
+					<td style="border:2px solid #59cff4;">PHP '.number_format($payslip->holiday_pay,2).'</td>
 				</tr>
 				<tr>
-					<td style="border:2px solid #59cff4;">DM :</td> 
-					<td style="border:2px solid #59cff4;">'.number_format($payslip->dm).' php</td>
+					<td style="border:2px solid #59cff4;"><b>DM :</b></td> 
+					<td style="border:2px solid #59cff4;">PHP '.number_format($payslip->dm,2).'</td>
 				</tr>
 				<tr>
-					<td style="border:2px solid #59cff4;">Cola :</td> 
-					<td style="border:2px solid #59cff4;">'.number_format($payslip->cola).' php</td>
+					<td style="border:2px solid #59cff4;"><b>Cola :</b></td> 
+					<td style="border:2px solid #59cff4;">PHP '.number_format($payslip->cola,2).'</td>
 				</tr>
 				<tr>
-					<td style="border:2px solid #59cff4;">Other non-taxable amt./Bonus :  </td> 
-					<td style="border:2px solid #59cff4;">'.number_format($payslip->bonus).' php</td>
+					<td style="border:2px solid #59cff4;"><b>Other non-taxable amt./Bonus :</b>  </td> 
+					<td style="border:2px solid #59cff4;">PHP '.number_format($payslip->bonus,2).'</td>
 				</tr>				
-				
+				<tr>
+					<td style="border:2px solid #59cff4;"><b>Gross Income :</b></td> 
+					<td style="border:2px solid #59cff4;"> PHP '.number_format($gross_income,2).'</td> 
+				</tr>				
 				<tr>
 					<td style="color:#fff; background-color:#59cff4; border:2px solid #59cff4;" align="center" colspan="2"><strong>Deductions</strong></td>
 				</tr>
 				
 				<tr>
-					<td style="border:2px solid #59cff4;">WTax :</td> 
-					<td style="border:2px solid #59cff4;">'.number_format($payslip->wtax).' php</td>
+					<td style="border:2px solid #59cff4;"><b>WTax :</b></td> 
+					<td style="border:2px solid #59cff4;">PHP '.number_format($payslip->wtax,2).'</td>
 				</tr>
 				<tr>
-					<td style="border:2px solid #59cff4;">SSS : </td> 
-					<td style="border:2px solid #59cff4;">'.number_format($payslip->sss).' php</td>
+					<td style="border:2px solid #59cff4;"><b>SSS :</b> </td> 
+					<td style="border:2px solid #59cff4;">PHP '.number_format($payslip->sss_cont,2).'</td>
 				</tr>
 				<tr>
-					<td style="border:2px solid #59cff4;">Philhealth : </td> 
-					<td style="border:2px solid #59cff4;">'.number_format($payslip->philhealth).' php</td>
+					<td style="border:2px solid #59cff4;"><b>Philhealth :</b> </td> 
+					<td style="border:2px solid #59cff4;">PHP '.number_format($payslip->philhealth_cont,2).'</td>
 				</tr>
 				<tr>
-					<td style="border:2px solid #59cff4;">PAGIBIG :  </td> 
-					<td style="border:2px solid #59cff4;">'.number_format($payslip->pagibig).' php</td>
-				</tr>	
-				
-			</table>
+					<td style="border:2px solid #59cff4;"><b>PAGIBIG :</b>  </td> 
+					<td style="border:2px solid #59cff4;">PHP '.number_format($payslip->pagibig_cont,2).'</td>
+				</tr>
+				<tr>
+					<td style="border:2px solid #59cff4;"><b>Total Deductions :</b>  </td> 
+					<td style="border:2px solid #59cff4;">PHP '.number_format($total_deduct,2).'</td>
+				</tr>	 
+				<tr>
+					<td style="color:#000; background-color:#fff; border:2px solid #59cff4;" align="center" colspan="2">
+						<strong>Net Pay : </strong>PHP '.number_format($gross_income - $total_deduct,2).'
+					</td>
+				</tr>				
+				<tr>
+					<td style="color:#fff; background-color:#59cff4; border:2px solid #59cff4;" align="center" colspan="2">
+						<p style="margin-bottom:20px;"><b>This payslip was printed as requested by employee, for whatever purpose it may serve.</b></p>
+						<br/><br/><br/><br/>
+						<p style="color:#fff; margin:0px!important; line-height:1; text-decoration:underline;">Ma. Vernita R. Santos</p>
+						<em style="margin:0px; line-height:1; color:#fff;">Managing Director</em>
+					</td>
+				</tr>
+			</table> 
 		';
 		
 		// Add a page

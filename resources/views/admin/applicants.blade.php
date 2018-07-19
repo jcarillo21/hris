@@ -30,7 +30,7 @@
 										<th><div class="checkbox"><input type="checkbox" id="check_all"/><label for="check_all"></label></div></th>
 										<th>#</th>
 										<th>Name</th>
-										<th>Contact Number</th>
+										<th>Contact #</th>
 										<th>Email address</th>
 										<th>Birthday</th>
 										<th>Date Applied</th>
@@ -68,7 +68,7 @@
 										<th><div class="checkbox"><input type="checkbox" id="check_all"/><label for="check_all"></label></div></th>
 										<th>#</th>
 										<th>Name</th>
-										<th>Contact Number</th>
+										<th>Contact #</th>
 										<th>Email address</th>
 										<th>Birthday</th>
 										<th>Date Applied</th>
