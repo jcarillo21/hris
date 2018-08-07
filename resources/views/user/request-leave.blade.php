@@ -39,6 +39,8 @@
 											<option value="SL">Sick Leave (SL)</option>
 											<option value="VL">Vacation Leave (VL)</option>
 											<option value="EL">Emergency Leave (EL)</option>
+											<option value="SPL">Solo-Parent Leave (SPL)</option>
+											<option value="BL">Bereavement Leave (BL)</option>
 										</select>								
 									</div>
 								</div>			
