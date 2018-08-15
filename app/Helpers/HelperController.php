@@ -122,4 +122,57 @@ class HelperController{
 		return 'Helper Connected!';
 	}	
 	
+	public function civil_status(){
+		return array(
+			'Single'  => 'Single',
+			'Married' => 'Married',
+			'Widowed' => 'Widowed'
+		);
+	}
+	public function system_role(){ //login table
+		return array(
+			'Admin'  => 'admin',
+			'User'   => 'user'
+		);
+	}	
+	public function user_role(){ //users table
+		return array(
+			'Applicant'   => 'applicant',
+			'Employee'   => 'employee',
+			'OJT'   => 'ojt'
+		);
+	}		
+	public function employment_status(){ //
+		return array(
+			'Applicant'  => 'applicant',
+			'Regular'  => 'regular',
+			'Probationary'  => 'probationary',
+			'Part-time' => 'part-time',
+			'Contractual' => 'contractual',
+			'OJT' => 'ojt'
+		);
+	}	
+	public function application_status(){ 
+		return array(
+			'Pending' => 'Pending',
+			'Failed' => 'Failed',
+			'Failed Initial Exam' => 'Failed Initial Exam',
+			'Failed Practical Exam' => 'Failed Practical Exam',
+			'Failed Initial Interview' => 'Failed Initial Interview',
+
+			'Passed Initial Exam' => 'Passed Initial Exam',
+			'Passed Practical Exam' => 'Passed Practical Exam',
+			'Passed Initial Interview' => 'Passed Initial Interview',
+			
+			'For Final Interview (Greg)' => 'For Final Interview (Greg)',
+			'For Final Interview (Ven)' => 'For Final Interview (Ven)',
+			'For Final Interview (Client)' => 'For Final Interview (Client)',
+			'For Final Interview (Peter)' => 'For Final Interview (Peter)',
+			
+			'Job Offer' => 'Job Offer',
+			'Shortlisted' => 'Shortlisted',
+			'For future reference' => 'For future reference',
+			'OJT Only' => 'OJT Only' 
+		);
+	}
 }

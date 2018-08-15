@@ -70,33 +70,37 @@
 								  <div class="col-sm-4">
 									<label class="control-label form-label">Civil Status</label><br/>
 									<select name="cstatus" class="form-control" >
-										<option value="<?php echo $employee->civil_status; ?>" selected><?php echo $employee->civil_status; ?></option>
+										<option value="<?php echo $employee->civil_status; ?>" selected><?php echo ucfirst($employee->civil_status); ?></option>
 										<option disabled>----</option>
-										<option value="Single">Single</option>
-										<option value="Married">Married</option>
-										<option value="Widowed">Widowed</option>
+										<?php
+											foreach($helper->civil_status() as $text => $value){
+												echo '<option value="'.$value.'">'.$text.'</option>';
+											}
+										?>	
 									</select>
 								  </div>
 								  <div class="col-sm-4">
 									<label class="control-label form-label">User Role</label><br/>
 									<select name="user_role" class="form-control" required >
-										<option value="<?php echo $employee->user_role; ?>" selected><?php echo $employee->user_role; ?></option>
+										<option value="<?php echo $employee->user_role; ?>" selected><?php echo ucfirst($employee->user_role); ?></option>
 										<option disabled>----</option>
-										<option value="admin">Admin</option>
-										<option value="Employee">Employee</option>
-										<option value="OJT">OJT</option>
+										<?php
+											foreach($helper->user_role() as $text => $value){
+												echo '<option value="'.$value.'">'.$text.'</option>';
+											}
+										?>	
 									</select>
 								  </div>
 								  <div class="col-sm-4">
 									<label class="control-label form-label">Employment Status</label><br/>
 									<select name="employment_status" class="form-control" >
-										<option value="<?php echo $employee->employment_status; ?>" selected><?php echo $employee->employment_status; ?></option>
+										<option value="<?php echo $employee->employment_status; ?>" selected><?php echo ucfirst($employee->employment_status); ?></option>
 										<option disabled>----</option>
-										<option value="Regular">Regular</option>
-										<option value="Probationary">Probationary</option>
-										<option value="Casual">Casual</option>
-										<option value="Part-time / Consultant">Part-time / Consultant</option>
-										<option value="OJT">OJT</option>
+										<?php
+											foreach($helper->employment_status() as $text => $value){
+												echo '<option value="'.$value.'">'.$text.'</option>';
+											}
+										?>	
 									</select>
 								  </div>
 								</div>
@@ -175,7 +179,7 @@
 									</div>
 									<div class="col-md-4">
 										<label class="control-label form-label">First Day of Work</label><br/>
-										<input value="<?php echo $employee->first_day_of_work; ?>" type="date" class="form-control" id="first_day" name="first_day" />										
+										<input value="<?php echo $employee->first_day_of_work ?  $employee->first_day_of_work : date('Y-m-d') ; ?>" type="date" class="form-control" id="first_day" name="first_day" />										
 									</div>
 									<div class="col-md-4">
 										<label class="control-label form-label">Employee #</label><br/>
@@ -320,8 +324,11 @@
 										<select name="system_role" class="form-control" required >
 										<option value="<?php echo $employee->role; ?>" selected><?php echo ucfirst($employee->role); ?></option>
 										<option disabled>----</option>
-										<option value="admin">Admin</option>
-										<option value="user">User</option>
+										<?php
+											foreach($helper->system_role() as $text => $value){
+												echo '<option value="'.$value.'">'.$text.'</option>';
+											}
+										?>											
 										</select>
 								  </div>									  
 								  <div class="col-sm-6">

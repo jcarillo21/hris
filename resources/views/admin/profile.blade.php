@@ -80,9 +80,11 @@
 											<select name="cstatus" class="selectpicker" >
 												<option value="<?php echo $profile->civil_status; ?>" selected><?php echo $profile->civil_status; ?></option>
 												<option disabled>----</option>
-												<option value="Single">Single</option>
-												<option value="Married">Married</option>
-												<option value="Widowed">Widowed</option>
+												<?php
+													foreach($helper->civil_status() as $text => $value){
+														echo '<option value="'.$value.'">'.$text.'</option>';
+													}
+												?>	
 											</select>
 										  </div>
 										  <div class="col-sm-4">
@@ -90,9 +92,11 @@
 											<select name="user_role" class="selectpicker" required >
 												<option value="<?php echo $profile->user_role; ?>" selected><?php echo $profile->user_role; ?></option>
 												<option disabled>----</option>
-												<option value="admin">Admin</option>
-												<option value="Employee">Employee</option>
-												<option value="OJT">OJT</option>
+												<?php
+													foreach($helper->system_role() as $text => $value){
+														echo '<option value="'.$value.'">'.$text.'</option>';
+													}
+												?>	
 											</select>
 										  </div>
 										  <div class="col-sm-4">
@@ -100,9 +104,11 @@
 											<select name="employment_status" class="selectpicker" required >
 												<option value="<?php echo $profile->employment_status; ?>" selected><?php echo $profile->employment_status; ?></option>
 												<option disabled>----</option>
-												<option value="Regular">Regular</option>
-												<option value="Part-time / Consultant">Part-time / Consultant</option>
-												<option value="OJT">OJT</option>
+												<?php
+													foreach($helper->employment_status() as $text => $value){
+														echo '<option value="'.$value.'">'.$text.'</option>';
+													}
+												?>	
 											</select>
 										  </div>			
 										</div>
@@ -181,10 +187,13 @@
 											<div class="col-sm-6">
 												<label class="control-label form-label">System Role</label><br/>
 												<select name="system_role" class="selectpicker" required >
-													<option selected><?php echo ucfirst($profile->role); ?></option>
+													<option value="<?php echo $profile->role; ?>" selected><?php echo ucfirst($profile->role); ?></option>
 													<option disabled>----</option>
-													<option value="admin">Admin</option>
-													<option value="user">User</option>
+													<?php
+														foreach($helper->system_role() as $text => $value){
+															echo '<option value="'.$value.'">'.$text.'</option>';
+														}
+													?>	
 												</select>	
 											</div>												  
 											<div class="col-sm-6">

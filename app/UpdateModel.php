@@ -52,6 +52,15 @@ class UpdateModel extends Model{
 			->update($values);		
 		return (($query) ? true : false);
 	}
+	protected function updateApplicationStatus($personal_info_id,$application_status){
+		$values = array(
+			'application_status' => $application_status
+		);		
+		$query = DB::table('users')
+			->where('personal_info_id',$personal_info_id)
+			->update($values);		
+		return (($query) ? true : false);		
+	}
 	protected function updateUserPassword($login_id,$password){
 		$values = array(
 			'password' => $password

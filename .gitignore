@@ -1,0 +1,4 @@
+storage/*
+error_log
+files/*
+.env

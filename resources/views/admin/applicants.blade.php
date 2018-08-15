@@ -1,5 +1,5 @@
 @extends('includes.admin-template')
-	@section('content')
+	@section('content') 
 		@include('includes/breadcrumbs')
 			@include('includes/flash-message')
 			<form id="DeleteApplicant" action="<?php echo url('admin/applicant/delete'); ?>" method="POST">
@@ -32,10 +32,10 @@
 										<th>Name</th>
 										<th>Contact #</th>
 										<th>Email address</th>
-										<th>Birthday</th>
 										<th>Date Applied</th>
 										<th>Position</th>
 										<th>Asking Salary</th>
+										<th>Application Status</th>
 										<th class="text-right">Action</th>
 									</tr>
 								</thead>
@@ -50,10 +50,10 @@
 												<td>'.$applicant->fname.' '.$applicant->mname.' '.$applicant->lname.'</td>
 												<td>'.$applicant->contact_number.'</td>
 												<td>'.$applicant->email_address.'</td>
-												<td>'.date('M d, Y',strtotime($applicant->birthday)).'</td> 
 												<td>'.date('M d, Y',strtotime($applicant->created_at)).'</td>
 												<td>'.$applicant->job_title.'</td>		
-												<td>'.$applicant->salary.'</td>													
+												<td>'.$applicant->salary.'</td>				
+												<td>'.$applicant->application_status.'</td> 												
 												<td align="right">
 													<a href="'.url("admin/edit/applicant").'/'.$applicant->personal_info_id.'" class="modal-settings btn btn-xs btn-primary" href="#"><i class="fa fa-pencil"></i> Edit</a>
 												</td>	 
@@ -70,10 +70,10 @@
 										<th>Name</th>
 										<th>Contact #</th>
 										<th>Email address</th>
-										<th>Birthday</th>
 										<th>Date Applied</th>
 										<th>Job Title</th>
 										<th>Asking Salary</th>
+										<th>Application Status</th>
 										<th class="text-right">Action</th>
 									</tr>
 								</tfoot>
